@@ -3,120 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ssport — Quản Lý Kế Hoạch & Checklist Đa Tháng</title>
-  <meta name="description" content="Hệ thống quản lý kế hoạch & checklist theo dõi công việc đa tháng - Công ty TNHH Học viện Giáo dục Thể thao Ssport">
+  <title>Ssport — Kế Hoạch & Tiến Độ Công Việc</title>
+  <meta name="description" content="Bảng theo dõi kế hoạch kinh doanh và checklist công việc Ssport - Tối giản, trực quan, dễ theo dõi">
 
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
   <style>
+    /* ==========================================================================
+       CLEAN EXECUTIVE DESIGN SYSTEM (SHEEPA / MINIMALIST HYBRID)
+       ========================================================================== */
     :root {
-      --bg-primary: #FDFBF7;
-      --bg-secondary: #F4EFEB;
+      --bg-page: #FBF9F5;
       --bg-card: #FFFFFF;
-      --bg-hover: #ECE4DC;
-      --border-color: #E2D9D0;
-      --border-light: #EFE9E2;
-      --text-main: #2A2521;
-      --text-secondary: #706860;
-      --text-muted: #9E968E;
+      --bg-subtle: #F3EFEA;
+      --bg-hover: #ECE6DE;
       
-      --accent: #2B5740;
-      --accent-hover: #1E3F2E;
-      --accent-contrast: #FFFFFF;
-      --accent-soft: rgba(43, 87, 64, 0.08);
+      --border-subtle: #E8E2D9;
+      --border-strong: #D5CCC0;
 
-      --badge-overdue-bg: #FEE2E2;
-      --badge-overdue-txt: #991B1B;
-      --badge-overdue-border: #FCA5A5;
+      --text-main: #24201D;
+      --text-muted: #6B635B;
+      --text-faint: #9C9388;
 
-      --badge-progress-bg: #E0F2FE;
-      --badge-progress-txt: #0369A1;
-      --badge-progress-border: #BAE6FD;
+      /* Ssport Deep Forest Green */
+      --brand: #244C37;
+      --brand-hover: #1A3728;
+      --brand-light: rgba(36, 76, 55, 0.08);
 
-      --badge-scheduled-bg: #F1F5F9;
-      --badge-scheduled-txt: #475569;
-      --badge-scheduled-border: #CBD5E1;
+      /* Soft Pastel Status Tokens */
+      --status-overdue-bg: #FEF2F2;
+      --status-overdue-txt: #991B1B;
+      --status-overdue-border: #FCA5A5;
+      --status-overdue-dot: #DC2626;
 
-      --badge-done-bg: #E8F5E9;
-      --badge-done-txt: #1B5E20;
-      --badge-done-border: #A5D6A7;
+      --status-doing-bg: #F0F9FF;
+      --status-doing-txt: #075985;
+      --status-doing-border: #BAE6FD;
+      --status-doing-dot: #0284C7;
 
-      --prio-urgent-bg: #FFF1F2;
-      --prio-urgent-txt: #BE123C;
-      --prio-high-bg: #FFFBEB;
-      --prio-high-txt: #B45309;
-      --prio-med-bg: #F0FDF4;
-      --prio-med-txt: #15803D;
+      --status-sched-bg: #F8FAFC;
+      --status-sched-txt: #475569;
+      --status-sched-border: #E2E8F0;
+      --status-sched-dot: #94A3B8;
 
-      --card-radius: 14px;
-      --shadow-sm: 0 1px 3px rgba(42, 37, 33, 0.06);
-      --shadow-md: 0 4px 12px rgba(42, 37, 33, 0.08);
-      --shadow-lg: 0 12px 28px rgba(42, 37, 33, 0.12);
-      --transition-fast: 0.15s ease;
-      --transition-normal: 0.25s ease;
-      
-      --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --status-done-bg: #F0FDF4;
+      --status-done-txt: #166534;
+      --status-done-border: #BBF7D0;
+      --status-done-dot: #16A34A;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+
+      --shadow-soft: 0 2px 8px rgba(36, 32, 29, 0.04);
+      --shadow-hover: 0 6px 18px rgba(36, 32, 29, 0.08);
+
+      --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
       --font-serif: 'Merriweather', Georgia, serif;
       --font-mono: 'JetBrains Mono', monospace;
     }
 
     [data-theme="sepia"] {
-      --bg-primary: #F4ECD8;
-      --bg-secondary: #E8DCBE;
+      --bg-page: #F4ECD8;
       --bg-card: #FAF4E8;
+      --bg-subtle: #E8DCBE;
       --bg-hover: #DCCEAA;
-      --border-color: #D8C7A5;
-      --border-light: #E2D4B7;
-      --text-main: #3C3024;
-      --text-secondary: #786450;
-      --text-muted: #A08C78;
-      --accent: #7D4E2D;
-      --accent-hover: #633C21;
-      --accent-contrast: #FFFFFF;
-      --accent-soft: rgba(125, 78, 45, 0.12);
-      --shadow-sm: 0 1px 3px rgba(60, 48, 36, 0.06);
-      --shadow-md: 0 4px 12px rgba(60, 48, 36, 0.09);
-      --shadow-lg: 0 12px 28px rgba(60, 48, 36, 0.15);
+      --border-subtle: #E0D2B4;
+      --border-strong: #C8B793;
+      --text-main: #362B20;
+      --text-muted: #6E5F50;
+      --text-faint: #968674;
+      --brand: #693E20;
+      --brand-hover: #523018;
+      --brand-light: rgba(105, 62, 32, 0.1);
     }
 
     [data-theme="dark"] {
-      --bg-primary: #17181C;
-      --bg-secondary: #212329;
-      --bg-card: #252830;
-      --bg-hover: #2E323D;
-      --border-color: #353A47;
-      --border-light: #2C303B;
-      --text-main: #ECEEF2;
-      --text-secondary: #9FA6B5;
-      --text-muted: #6B7280;
-      --accent: #4E9A70;
-      --accent-hover: #63B285;
-      --accent-contrast: #FFFFFF;
-      --accent-soft: rgba(78, 154, 112, 0.18);
+      --bg-page: #141518;
+      --bg-card: #1F2127;
+      --bg-subtle: #272B33;
+      --bg-hover: #323742;
+      --border-subtle: #2F3440;
+      --border-strong: #3F4656;
+      --text-main: #F1F3F5;
+      --text-muted: #A6ADBB;
+      --text-faint: #6B7280;
+      --brand: #4E9A70;
+      --brand-hover: #63B285;
+      --brand-light: rgba(78, 154, 112, 0.15);
 
-      --badge-overdue-bg: #3B1C1D;
-      --badge-overdue-txt: #FCA5A5;
-      --badge-overdue-border: #7F1D1D;
+      --status-overdue-bg: #2D1517;
+      --status-overdue-txt: #FCA5A5;
+      --status-overdue-border: #5C1D20;
 
-      --badge-progress-bg: #132E47;
-      --badge-progress-txt: #93C5FD;
-      --badge-progress-border: #1E40AF;
+      --status-doing-bg: #10263B;
+      --status-doing-txt: #93C5FD;
+      --status-doing-border: #1E40AF;
 
-      --badge-scheduled-bg: #2B2E38;
-      --badge-scheduled-txt: #94A3B8;
-      --badge-scheduled-border: #475569;
+      --status-sched-bg: #21252D;
+      --status-sched-txt: #94A3B8;
+      --status-sched-border: #333945;
 
-      --badge-done-bg: #143322;
-      --badge-done-txt: #86EFAC;
-      --badge-done-border: #166534;
-
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.3);
-      --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
-      --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.5);
+      --status-done-bg: #122B1E;
+      --status-done-txt: #86EFAC;
+      --status-done-border: #14532D;
     }
 
     * {
@@ -126,875 +120,634 @@
     }
 
     body {
-      background-color: var(--bg-primary);
+      background-color: var(--bg-page);
       color: var(--text-main);
-      font-family: var(--font-body);
+      font-family: var(--font-sans);
       line-height: 1.5;
-      transition: background-color var(--transition-normal), color var(--transition-normal);
+      padding-bottom: 90px;
       -webkit-font-smoothing: antialiased;
-      padding-bottom: 80px;
     }
 
     .container {
-      max-width: 1380px;
+      max-width: 1280px;
       margin: 0 auto;
-      padding: 0 24px;
+      padding: 0 20px;
     }
 
-    /* HEADER */
-    header {
-      padding: 32px 0 22px;
-      border-bottom: 1px solid var(--border-color);
-      margin-bottom: 24px;
-    }
-
-    .header-top {
+    /* TOP BAR / NAV */
+    .top-nav {
+      padding: 24px 0 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
       flex-wrap: wrap;
       gap: 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 20px;
     }
 
-    .brand {
+    .brand-wrap {
       display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .brand-icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 12px;
-      background: var(--accent);
-      color: var(--accent-contrast);
+    .brand-logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: var(--brand);
+      color: #FFFFFF;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.4rem;
-      box-shadow: 0 3px 8px rgba(43, 87, 64, 0.25);
+      font-size: 1.25rem;
     }
 
-    .brand-title {
+    .brand-name {
       font-family: var(--font-serif);
-      font-size: 1.75rem;
+      font-size: 1.45rem;
       font-weight: 700;
-      letter-spacing: -0.02em;
       color: var(--text-main);
       line-height: 1.2;
     }
 
-    .brand-subtitle {
-      font-size: 0.88rem;
-      color: var(--text-secondary);
-      margin-top: 3px;
+    .brand-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
     }
 
-    .header-actions {
+    .nav-actions {
       display: flex;
       align-items: center;
       gap: 10px;
       flex-wrap: wrap;
     }
 
-    /* Month Selector Pill */
-    .month-picker-wrap {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--bg-card);
-      border: 2px solid var(--accent);
-      border-radius: 12px;
-      padding: 4px 10px 4px 12px;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .month-picker-label {
-      font-size: 0.78rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      color: var(--accent);
+    .month-select-pill {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-strong);
+      border-radius: 10px;
+      padding: 6px 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-soft);
     }
 
-    .month-select {
+    .month-select-pill select {
       border: none;
       background: transparent;
-      font-family: var(--font-body);
-      font-size: 0.92rem;
+      font-family: inherit;
+      font-size: 0.88rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: var(--brand);
       cursor: pointer;
       outline: none;
-      padding: 4px 0;
     }
 
-    .btn-action {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      padding: 8px 13px;
-      border-radius: 10px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-main);
-      font-size: 0.84rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      user-select: none;
-      text-decoration: none;
-    }
-
-    .btn-action:hover {
-      background: var(--bg-hover);
-      border-color: var(--text-muted);
-    }
-
-    .btn-action.active {
-      background: var(--accent);
-      color: var(--accent-contrast);
-      border-color: var(--accent);
-    }
-
-    .theme-selector {
+    .theme-pill-group {
       display: flex;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
+      background: var(--bg-subtle);
+      border-radius: 8px;
       padding: 3px;
       gap: 2px;
     }
 
     .theme-btn {
-      padding: 5px 9px;
-      border-radius: 8px;
       border: none;
       background: transparent;
-      color: var(--text-secondary);
-      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding: 5px 9px;
+      border-radius: 6px;
+      font-size: 0.76rem;
+      font-weight: 600;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 5px;
-      transition: all var(--transition-fast);
+      gap: 4px;
     }
 
     .theme-btn.active {
       background: var(--bg-card);
       color: var(--text-main);
-      font-weight: 600;
-      box-shadow: var(--shadow-sm);
+      box-shadow: var(--shadow-soft);
     }
 
-    /* STATS DASHBOARD */
-    .stats-dashboard {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--card-radius);
-      padding: 22px;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-sm);
-      animation: fadeIn 0.25s ease-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(-6px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .stats-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 18px;
-      padding-bottom: 12px;
-      border-bottom: 1px solid var(--border-light);
-    }
-
-    .stats-title {
-      font-family: var(--font-serif);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-bottom: 20px;
-    }
-
-    .stat-kpi-card {
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-light);
-      border-radius: 10px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .stat-kpi-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      bottom: 0;
-      width: 4px;
-      background: var(--accent);
-    }
-
-    .stat-kpi-card.overdue::before { background: #DC2626; }
-    .stat-kpi-card.inprogress::before { background: #0284C7; }
-    .stat-kpi-card.scheduled::before { background: #64748B; }
-    .stat-kpi-card.done::before { background: #16A34A; }
-
-    .stat-kpi-label {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
-      margin-bottom: 4px;
-      font-weight: 600;
-    }
-
-    .stat-kpi-value {
-      font-family: var(--font-serif);
-      font-size: 1.7rem;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.2;
-    }
-
-    .stat-kpi-sub {
-      font-size: 0.76rem;
-      color: var(--text-secondary);
-      margin-top: 4px;
-    }
-
-    .workload-section {
-      margin-top: 16px;
-      padding-top: 16px;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .workload-title {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: var(--text-main);
-      margin-bottom: 12px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .person-bars-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 12px;
-    }
-
-    .person-bar-item {
-      background: var(--bg-secondary);
-      padding: 10px 14px;
+    .btn-text-icon {
+      padding: 7px 12px;
       border-radius: 8px;
-      border: 1px solid var(--border-light);
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .person-bar-item:hover {
-      border-color: var(--accent);
-      background: var(--bg-hover);
-    }
-
-    .person-bar-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.86rem;
-    }
-
-    .person-name {
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-muted);
+      font-size: 0.8rem;
       font-weight: 600;
-      color: var(--text-main);
-      display: flex;
+      cursor: pointer;
+      display: inline-flex;
       align-items: center;
       gap: 6px;
     }
-
-    .person-count {
-      font-family: var(--font-mono);
-      font-size: 0.78rem;
-      color: var(--text-secondary);
+    .btn-text-icon:hover {
+      background: var(--bg-hover);
+      color: var(--text-main);
     }
 
-    .person-progress-track {
-      height: 7px;
-      background: var(--border-color);
+    /* COMPACT KPI BAR (THƯỚC ĐO TIẾN ĐỘ 1 HÀNG) */
+    .kpi-strip {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 20px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .kpi-metrics-wrap {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .kpi-metric-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .kpi-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .kpi-metric-item .label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .kpi-metric-item .val {
+      font-family: var(--font-mono);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+    }
+
+    .kpi-progress-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 220px;
+    }
+
+    .kpi-bar-track {
+      flex: 1;
+      height: 8px;
+      background: var(--bg-subtle);
       border-radius: 4px;
       overflow: hidden;
       display: flex;
     }
 
-    .person-progress-done { background: #16A34A; height: 100%; }
-    .person-progress-doing { background: #0284C7; height: 100%; }
-    .person-progress-overdue { background: #DC2626; height: 100%; }
-    .person-progress-scheduled { background: #94A3B8; height: 100%; }
+    .kpi-bar-fill-done { background: #16A34A; }
+    .kpi-bar-fill-doing { background: #0284C7; }
+    .kpi-bar-fill-overdue { background: #DC2626; }
+    .kpi-bar-fill-sched { background: #CBD5E1; }
 
-    /* CONTROLS BAR */
-    .controls-bar {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin-bottom: 22px;
+    /* AVATAR BAR - CHỌN NHANH NHÂN SỰ */
+    .avatar-filter-section {
+      margin-bottom: 20px;
     }
 
-    .controls-top-row {
+    .avatar-filter-title {
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-faint);
+      margin-bottom: 10px;
       display: flex;
-      gap: 12px;
+      justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
     }
 
-    .search-box {
-      flex: 1;
-      min-width: 280px;
-      position: relative;
+    .avatar-chips-track {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 6px;
+      scrollbar-width: thin;
     }
 
-    .search-input {
-      width: 100%;
-      padding: 11px 16px 11px 42px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
+    .avatar-chip {
       background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 30px;
+      padding: 6px 14px 6px 8px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .avatar-chip:hover {
+      border-color: var(--brand);
+      background: var(--bg-hover);
+    }
+
+    .avatar-chip.active {
+      background: var(--brand);
+      color: #FFFFFF;
+      border-color: var(--brand);
+    }
+
+    .avatar-circle {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-subtle);
       color: var(--text-main);
-      font-family: var(--font-body);
-      font-size: 0.92rem;
-      outline: none;
-      transition: all var(--transition-fast);
+      font-weight: 700;
+      font-size: 0.8rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    .search-input:focus {
-      border-color: var(--accent);
-      box-shadow: 0 0 0 3px var(--accent-soft);
+    .avatar-chip.active .avatar-circle {
+      background: rgba(255, 255, 255, 0.2);
+      color: #FFFFFF;
     }
 
-    .search-icon {
+    .avatar-name {
+      font-size: 0.86rem;
+      font-weight: 600;
+    }
+
+    .avatar-badge-count {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      padding: 1px 6px;
+      border-radius: 10px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
+    }
+
+    .avatar-chip.active .avatar-badge-count {
+      background: rgba(255, 255, 255, 0.25);
+      color: #FFFFFF;
+    }
+
+    /* CONTROLS & VIEW SELECTOR */
+    .toolbar-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .search-input-wrap {
+      position: relative;
+      flex: 1;
+      max-width: 360px;
+      min-width: 240px;
+    }
+
+    .search-input-wrap i {
       position: absolute;
       left: 14px;
       top: 50%;
       transform: translateY(-50%);
-      color: var(--text-muted);
-      font-size: 0.95rem;
+      color: var(--text-faint);
+      font-size: 0.9rem;
     }
 
-    .view-mode-tabs {
+    .search-field {
+      width: 100%;
+      padding: 10px 14px 10px 38px;
+      border-radius: 10px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    .search-field:focus {
+      border-color: var(--brand);
+      box-shadow: 0 0 0 3px var(--brand-light);
+    }
+
+    .secondary-filters {
       display: flex;
-      background: var(--bg-secondary);
-      border: 1px solid var(--border-color);
-      border-radius: 12px;
+      gap: 8px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .filter-select {
+      padding: 8px 12px;
+      border-radius: 9px;
+      border: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+      color: var(--text-main);
+      font-size: 0.82rem;
+      font-weight: 500;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .view-switcher {
+      display: flex;
+      background: var(--bg-subtle);
+      border-radius: 10px;
       padding: 3px;
       gap: 2px;
     }
 
-    .view-tab-btn {
-      padding: 8px 14px;
-      border-radius: 9px;
+    .view-btn {
       border: none;
       background: transparent;
-      color: var(--text-secondary);
-      font-size: 0.84rem;
-      font-weight: 500;
+      padding: 7px 12px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-muted);
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 7px;
-      transition: all var(--transition-fast);
+      gap: 6px;
     }
 
-    .view-tab-btn:hover {
-      color: var(--text-main);
-    }
-
-    .view-tab-btn.active {
+    .view-btn.active {
       background: var(--bg-card);
       color: var(--text-main);
+      box-shadow: var(--shadow-soft);
+    }
+
+    /* ==========================================================================
+       VIEW 1: FOCUS / URGENCY SECTIONS (CỰC KỲ DỄ NHÌN)
+       ========================================================================== */
+    .focus-group {
+      margin-bottom: 28px;
+    }
+
+    .focus-group-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .focus-icon-circle {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+    }
+
+    .focus-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .focus-count {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      padding: 2px 7px;
+      border-radius: 10px;
+      background: var(--bg-subtle);
+      color: var(--text-muted);
       font-weight: 600;
-      box-shadow: var(--shadow-sm);
     }
 
-    .sort-select {
-      padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-main);
-      font-family: var(--font-body);
-      font-size: 0.85rem;
-      cursor: pointer;
-      outline: none;
-    }
-
-    /* FILTERS */
-    .filter-section {
+    .task-cards-list {
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 8px;
     }
 
-    .filter-row {
+    .task-card-row {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .task-card-row:hover {
+      border-color: var(--brand);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .task-card-row.is-done {
+      opacity: 0.55;
+      background: var(--bg-subtle);
+    }
+
+    .task-card-row.is-done .task-name {
+      text-decoration: line-through;
+    }
+
+    .task-left-col {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-checkbox-custom {
+      width: 19px;
+      height: 19px;
+      accent-color: var(--brand);
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .task-stt {
+      font-family: var(--font-mono);
+      font-size: 0.76rem;
+      color: var(--text-faint);
+      font-weight: 600;
+      width: 32px;
+      flex-shrink: 0;
+    }
+
+    .task-title-wrap {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .task-name {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--text-main);
+      line-height: 1.35;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .task-meta-sub {
       display: flex;
       align-items: center;
       gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .filter-label {
+      margin-top: 3px;
       font-size: 0.76rem;
-      text-transform: uppercase;
-      font-weight: 700;
-      letter-spacing: 0.05em;
       color: var(--text-muted);
-      min-width: 90px;
-    }
-
-    .filter-pills {
-      display: flex;
-      gap: 6px;
       flex-wrap: wrap;
     }
 
-    .pill {
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
+    .project-pill {
+      background: var(--bg-subtle);
+      padding: 1px 7px;
+      border-radius: 4px;
       font-weight: 500;
-      border: 1px solid var(--border-color);
-      background: var(--bg-card);
-      color: var(--text-secondary);
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      user-select: none;
-      display: inline-flex;
+      color: var(--text-muted);
+    }
+
+    .task-right-col {
+      display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 14px;
+      flex-shrink: 0;
     }
 
-    .pill:hover {
-      background: var(--bg-hover);
-      color: var(--text-main);
-      border-color: var(--text-muted);
+    .assignee-avatar-group {
+      display: flex;
+      align-items: center;
+      gap: 4px;
     }
 
-    .pill.active {
-      background: var(--accent);
-      color: var(--accent-contrast);
-      border-color: var(--accent);
+    .assignee-badge {
+      font-size: 0.78rem;
       font-weight: 600;
-    }
-
-    .pill .badge-count {
-      font-size: 0.7rem;
-      padding: 1px 6px;
-      border-radius: 10px;
-      background: rgba(0, 0, 0, 0.08);
-      font-family: var(--font-mono);
-    }
-
-    .pill.active .badge-count {
-      background: rgba(255, 255, 255, 0.25);
-    }
-
-    /* BADGES */
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 3px 9px;
+      padding: 3px 8px;
       border-radius: 6px;
-      font-size: 0.76rem;
+      background: var(--brand-light);
+      color: var(--brand);
+    }
+
+    .deadline-badge {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
       font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 6px;
       white-space: nowrap;
     }
 
-    .status-badge.quahan {
-      background: var(--badge-overdue-bg);
-      color: var(--badge-overdue-txt);
-      border: 1px solid var(--badge-overdue-border);
+    .deadline-badge.overdue {
+      background: var(--status-overdue-bg);
+      color: var(--status-overdue-txt);
+      border: 1px solid var(--status-overdue-border);
     }
 
-    .status-badge.danglam {
-      background: var(--badge-progress-bg);
-      color: var(--badge-progress-txt);
-      border: 1px solid var(--badge-progress-border);
+    .deadline-badge.normal {
+      background: var(--bg-subtle);
+      color: var(--text-muted);
     }
 
-    .status-badge.lenlich {
-      background: var(--badge-scheduled-bg);
-      color: var(--badge-scheduled-txt);
-      border: 1px solid var(--badge-scheduled-border);
-    }
-
-    .status-badge.hoanthanh {
-      background: var(--badge-done-bg);
-      color: var(--badge-done-txt);
-      border: 1px solid var(--badge-done-border);
-    }
-
-    .prio-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 7px;
-      border-radius: 5px;
-      font-size: 0.72rem;
-      font-weight: 600;
-    }
-
-    .prio-badge.ratcao { background: var(--prio-urgent-bg); color: var(--prio-urgent-txt); border: 1px solid #FECDD3; }
-    .prio-badge.cao { background: var(--prio-high-bg); color: var(--prio-high-txt); border: 1px solid #FDE68A; }
-    .prio-badge.tb { background: var(--prio-med-bg); color: var(--prio-med-txt); border: 1px solid #BBF7D0; }
-
-    .project-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 8px;
-      border-radius: 5px;
-      font-size: 0.74rem;
-      background: var(--bg-secondary);
-      color: var(--text-secondary);
-      border: 1px solid var(--border-light);
-      font-weight: 500;
-    }
-
-    .assignee-chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 2px 8px;
-      border-radius: 12px;
-      background: var(--accent-soft);
-      color: var(--accent);
-      font-size: 0.74rem;
-      font-weight: 600;
-      border: 1px solid rgba(43, 87, 64, 0.15);
-    }
-
-    /* TABLE VIEW */
-    .table-container {
+    /* ==========================================================================
+       VIEW 2: WEEKLY TIMELINE (THEO TUẦN)
+       ========================================================================== */
+    .timeline-week-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--card-radius);
-      box-shadow: var(--shadow-sm);
-      overflow-x: auto;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      margin-bottom: 20px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
     }
 
-    .task-table {
+    .timeline-week-header {
+      background: var(--bg-subtle);
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .timeline-week-title {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .timeline-week-body {
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    /* ==========================================================================
+       VIEW 3: MINIMAL TABLE
+       ========================================================================== */
+    .table-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow-x: auto;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .clean-table {
       width: 100%;
       border-collapse: collapse;
       text-align: left;
       font-size: 0.86rem;
     }
 
-    .task-table th {
-      background: var(--bg-secondary);
+    .clean-table th {
+      background: var(--bg-subtle);
       padding: 12px 14px;
-      font-weight: 600;
-      color: var(--text-secondary);
-      border-bottom: 1px solid var(--border-color);
-      white-space: nowrap;
-      user-select: none;
+      font-weight: 700;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border-subtle);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
     }
 
-    .task-table td {
+    .clean-table td {
       padding: 12px 14px;
-      border-bottom: 1px solid var(--border-light);
-      vertical-align: middle;
-      transition: background-color var(--transition-fast);
+      border-bottom: 1px solid var(--border-subtle);
     }
 
-    .task-table tr:last-child td { border-bottom: none; }
-    .task-table tr:hover td { background-color: var(--bg-hover); }
-    .task-table tr.task-done td { opacity: 0.65; }
-    .task-table tr.task-done .task-name-text { text-decoration: line-through; }
-
-    .task-checkbox {
-      width: 18px;
-      height: 18px;
-      accent-color: var(--accent);
-      cursor: pointer;
-    }
-
-    .task-name-cell {
-      font-weight: 600;
-      color: var(--text-main);
-      cursor: pointer;
-    }
-
-    .task-name-cell:hover { color: var(--accent); }
-
-    .task-desc-sub {
-      font-size: 0.77rem;
-      color: var(--text-secondary);
-      font-weight: 400;
-      margin-top: 3px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .date-mono {
-      font-family: var(--font-mono);
-      font-size: 0.79rem;
-      white-space: nowrap;
-    }
-
-    /* ASSIGNEE VIEW */
-    .assignee-view-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(420px, 1fr));
-      gap: 20px;
-    }
-
-    .person-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--card-radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .person-card-header {
-      padding: 16px 18px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .person-avatar-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .person-avatar {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: var(--accent);
-      color: var(--accent-contrast);
-      font-weight: 700;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .person-info h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-
-    .person-info p {
-      font-size: 0.76rem;
-      color: var(--text-secondary);
-    }
-
-    .person-badge-summary {
-      display: flex;
-      gap: 6px;
-    }
-
-    .person-card-body {
-      padding: 14px 18px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      max-height: 520px;
-      overflow-y: auto;
-    }
-
-    .person-task-item {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-light);
-      border-radius: 8px;
-      padding: 10px 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-    }
-
-    .person-task-item:hover {
-      border-color: var(--accent);
+    .clean-table tr:hover td {
       background: var(--bg-hover);
-    }
-
-    .person-task-item.is-done { opacity: 0.6; }
-    .person-task-item.is-done .task-title { text-decoration: line-through; }
-
-    .person-task-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-    }
-
-    .person-task-bottom {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.74rem;
-      color: var(--text-secondary);
-      border-top: 1px dashed var(--border-light);
-      padding-top: 5px;
-      margin-top: 2px;
-    }
-
-    /* KANBAN VIEW */
-    .kanban-board {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      align-items: flex-start;
-    }
-
-    @media (max-width: 1024px) {
-      .kanban-board { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 640px) {
-      .kanban-board { grid-template-columns: 1fr; }
-      .assignee-view-grid { grid-template-columns: 1fr; }
-    }
-
-    .kanban-col {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--card-radius);
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      max-height: 820px;
-    }
-
-    .kanban-col-header {
-      padding: 14px 16px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .kanban-col-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--text-main);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .kanban-cards-wrap {
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      overflow-y: auto;
-      flex: 1;
-    }
-
-    .kanban-card {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-light);
-      border-radius: 10px;
-      padding: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      box-shadow: var(--shadow-sm);
-    }
-
-    .kanban-card:hover {
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--accent);
-    }
-
-    .kanban-card-title {
-      font-weight: 600;
-      font-size: 0.88rem;
-      color: var(--text-main);
-      line-height: 1.35;
-    }
-
-    .kanban-card-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.74rem;
-      color: var(--text-secondary);
-    }
-
-    /* PROJECT VIEW */
-    .project-group-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--card-radius);
-      margin-bottom: 16px;
-      box-shadow: var(--shadow-sm);
-      overflow: hidden;
-    }
-
-    .project-group-header {
-      padding: 14px 18px;
-      background: var(--bg-secondary);
-      border-bottom: 1px solid var(--border-color);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-      user-select: none;
-    }
-
-    .project-title-left {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--text-main);
-    }
-
-    .project-progress-wrap {
-      display: flex;
-      align-items: center;
-      gap: 12px;
     }
 
     /* MODAL */
@@ -1002,406 +755,309 @@
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(42, 37, 33, 0.6);
+      background: rgba(30, 26, 23, 0.5);
       backdrop-filter: blur(4px);
       z-index: 1000;
       align-items: center;
       justify-content: center;
       padding: 20px;
-      animation: fadeIn 0.2s ease-out;
     }
 
-    .modal-card {
+    .modal-sheet {
       background: var(--bg-card);
-      border: 1px solid var(--border-color);
-      border-radius: var(--card-radius);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
       width: 100%;
-      max-width: 680px;
-      max-height: 90vh;
+      max-width: 620px;
+      max-height: 85vh;
       overflow-y: auto;
-      box-shadow: var(--shadow-lg);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
       display: flex;
       flex-direction: column;
     }
 
-    .modal-header {
-      padding: 20px 24px;
-      border-bottom: 1px solid var(--border-light);
+    .modal-head {
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 14px;
+      gap: 12px;
     }
 
-    .modal-title-box h2 {
-      font-family: var(--font-serif);
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--text-main);
-      line-height: 1.3;
-      margin-bottom: 6px;
-    }
-
-    .modal-close-btn {
+    .modal-close {
       background: transparent;
       border: none;
-      font-size: 1.3rem;
-      color: var(--text-muted);
+      font-size: 1.2rem;
+      color: var(--text-faint);
       cursor: pointer;
-      padding: 4px;
-      border-radius: 6px;
-      transition: all var(--transition-fast);
     }
 
-    .modal-close-btn:hover { color: var(--text-main); background: var(--bg-hover); }
-
     .modal-body {
-      padding: 20px 24px;
+      padding: 20px 22px;
       display: flex;
       flex-direction: column;
       gap: 16px;
     }
 
-    .detail-grid {
+    .info-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
-      background: var(--bg-secondary);
-      padding: 14px;
+      gap: 10px;
+      background: var(--bg-subtle);
+      padding: 12px 16px;
       border-radius: 10px;
-      border: 1px solid var(--border-light);
     }
 
-    .detail-item {
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
-    .detail-item-label {
+    .info-cell-label {
       font-size: 0.72rem;
+      color: var(--text-muted);
       text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--text-muted);
     }
 
-    .detail-item-value {
+    .info-cell-val {
       font-size: 0.88rem;
       font-weight: 600;
       color: var(--text-main);
     }
 
-    .detail-desc-box {
-      background: var(--bg-primary);
-      border: 1px solid var(--border-color);
+    .desc-box {
+      background: var(--bg-page);
+      border: 1px solid var(--border-subtle);
       border-radius: 10px;
       padding: 14px;
       font-size: 0.88rem;
       line-height: 1.6;
-      color: var(--text-main);
       white-space: pre-wrap;
     }
 
-    .modal-footer {
-      padding: 16px 24px;
-      border-top: 1px solid var(--border-light);
-      background: var(--bg-secondary);
+    .modal-foot {
+      padding: 14px 22px;
+      background: var(--bg-subtle);
+      border-top: 1px solid var(--border-subtle);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
     }
 
-    .btn-modal-action {
-      padding: 8px 16px;
+    .btn-save-modal {
+      padding: 7px 16px;
       border-radius: 8px;
-      font-size: 0.84rem;
-      font-weight: 600;
-      cursor: pointer;
-      border: 1px solid var(--border-color);
-      transition: all var(--transition-fast);
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .btn-modal-done {
-      background: #16A34A;
+      background: var(--brand);
       color: #FFFFFF;
-      border-color: #16A34A;
+      border: none;
+      font-weight: 600;
+      font-size: 0.84rem;
+      cursor: pointer;
     }
-    .btn-modal-done:hover { background: #15803D; }
 
     .empty-state {
-      padding: 60px 20px;
+      padding: 50px 20px;
       text-align: center;
-      color: var(--text-muted);
+      color: var(--text-faint);
     }
-    .empty-state i { font-size: 2.8rem; margin-bottom: 14px; color: var(--border-color); }
   </style>
 
-  <!-- Load Data Bundle for Zero-CORS offline/local execution -->
+  <!-- Data Bundle -->
   <script src="data/bundle.js"></script>
 </head>
 <body>
 
   <div class="container">
-    <!-- HEADER -->
-    <header>
-      <div class="header-top">
-        <div class="brand">
-          <div class="brand-icon">
-            <i class="fa-solid fa-medal"></i>
-          </div>
-          <div>
-            <div class="brand-title">Ssport — Quản Lý Kế Hoạch & Checklist</div>
-            <div class="brand-subtitle">Công ty TNHH Học viện Giáo dục Thể thao Ssport · Đồng bộ GitHub</div>
-          </div>
+    <!-- TOP NAVIGATION -->
+    <header class="top-nav">
+      <div class="brand-wrap">
+        <div class="brand-logo">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h1 class="brand-name">Ssport Plan</h1>
+          <div class="brand-meta">Kế hoạch & Checklist công việc tháng</div>
+        </div>
+      </div>
+
+      <div class="nav-actions">
+        <!-- Month Selector -->
+        <div class="month-select-pill">
+          <i class="fa-regular fa-calendar" style="color: var(--brand);"></i>
+          <select id="monthSelect"></select>
         </div>
 
-        <div class="header-actions">
-          <!-- Month Picker -->
-          <div class="month-picker-wrap">
-            <span class="month-picker-label"><i class="fa-regular fa-calendar-check"></i> Kế hoạch:</span>
-            <select id="monthSelect" class="month-select">
-              <!-- Dynamically populated -->
-            </select>
-          </div>
-
-          <button id="toggleStatsBtn" class="btn-action">
-            <i class="fa-solid fa-chart-pie"></i>
-            <span>Thống kê</span>
-          </button>
-          
-          <button id="resetStorageBtn" class="btn-action" title="Khôi phục trạng thái gốc">
-            <i class="fa-solid fa-rotate"></i>
-            <span>Khôi phục</span>
-          </button>
-
-          <button id="exportJsonBtn" class="btn-action" title="Tải file dữ liệu JSON">
-            <i class="fa-solid fa-download"></i>
-            <span>Xuất JSON</span>
-          </button>
-
-          <!-- Theme switcher -->
-          <div class="theme-selector">
-            <button class="theme-btn active" data-theme-val="light" title="Giao diện Sáng">
-              <i class="fa-regular fa-sun"></i> Sáng
-            </button>
-            <button class="theme-btn" data-theme-val="sepia" title="Giao diện Sepia">
-              <i class="fa-solid fa-book-open"></i> Sepia
-            </button>
-            <button class="theme-btn" data-theme-val="dark" title="Giao diện Tối">
-              <i class="fa-regular fa-moon"></i> Tối
-            </button>
-          </div>
+        <!-- Theme switcher -->
+        <div class="theme-pill-group">
+          <button class="theme-btn active" data-theme-val="light"><i class="fa-regular fa-sun"></i> Sáng</button>
+          <button class="theme-btn" data-theme-val="sepia"><i class="fa-solid fa-book-open"></i> Sepia</button>
+          <button class="theme-btn" data-theme-val="dark"><i class="fa-regular fa-moon"></i> Tối</button>
         </div>
+
+        <button id="resetBtn" class="btn-text-icon" title="Khôi phục trạng thái ban đầu">
+          <i class="fa-solid fa-rotate-left"></i> Khôi phục
+        </button>
+
+        <a href="https://docs.google.com/spreadsheets/d/1GKT_j-gHnZRwcpnrzEKlkSWQ0Sa2TbLYDxefyBi_OO8/edit?gid=1548491598#gid=1548491598" target="_blank" class="btn-text-icon">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i> Sheet gốc
+        </a>
       </div>
     </header>
 
-    <!-- STATS DASHBOARD -->
-    <div id="statsDashboard" class="stats-dashboard">
-      <div class="stats-header">
-        <div class="stats-title">
-          <i class="fa-solid fa-chart-simple"></i>
-          <span id="dashboardMonthTitle">Tổng Quan Tiến Độ</span>
+    <!-- COMPACT KPI STRIP (TIẾN ĐỘ GỌN GÀNG 1 DÒNG) -->
+    <div class="kpi-strip">
+      <div class="kpi-metrics-wrap">
+        <div class="kpi-metric-item">
+          <span class="kpi-dot" style="background: var(--text-main);"></span>
+          <span class="label">Tổng cộng:</span>
+          <span id="kpiTotal" class="val">0</span>
         </div>
-        <div id="overallProgressText" style="font-family: var(--font-mono); font-weight: 600; font-size: 0.95rem; color: var(--accent);">
-          0% Hoàn thành
+        <div class="kpi-metric-item">
+          <span class="kpi-dot" style="background: #DC2626;"></span>
+          <span class="label">Quá hạn:</span>
+          <span id="kpiOverdue" class="val" style="color: #DC2626;">0</span>
         </div>
-      </div>
-
-      <div class="stats-grid">
-        <div class="stat-kpi-card">
-          <div class="stat-kpi-label">Tổng Nhiệm Vụ</div>
-          <div id="statTotal" class="stat-kpi-value">0</div>
-          <div class="stat-kpi-sub" id="statSubTotal">Đầu việc trong tháng</div>
+        <div class="kpi-metric-item">
+          <span class="kpi-dot" style="background: #0284C7;"></span>
+          <span class="label">Đang làm:</span>
+          <span id="kpiDoing" class="val" style="color: #0284C7;">0</span>
         </div>
-
-        <div class="stat-kpi-card overdue">
-          <div class="stat-kpi-label">Quá Hạn / Cần Gỡ</div>
-          <div id="statOverdue" class="stat-kpi-value" style="color: #DC2626;">0</div>
-          <div class="stat-kpi-sub">Cần giải quyết ngay</div>
+        <div class="kpi-metric-item">
+          <span class="kpi-dot" style="background: #64748B;"></span>
+          <span class="label">Lên lịch:</span>
+          <span id="kpiSched" class="val" style="color: #64748B;">0</span>
         </div>
-
-        <div class="stat-kpi-card inprogress">
-          <div class="stat-kpi-label">Đang Thực Hiện</div>
-          <div id="statInProgress" class="stat-kpi-value" style="color: #0284C7;">0</div>
-          <div class="stat-kpi-sub">Tiến độ bình thường</div>
-        </div>
-
-        <div class="stat-kpi-card scheduled">
-          <div class="stat-kpi-label">Đã Lên Lịch</div>
-          <div id="statScheduled" class="stat-kpi-value" style="color: #64748B;">0</div>
-          <div class="stat-kpi-sub">Kế hoạch tuần tới</div>
-        </div>
-
-        <div class="stat-kpi-card done">
-          <div class="stat-kpi-label">Đã Hoàn Thành</div>
-          <div id="statDone" class="stat-kpi-value" style="color: #16A34A;">0</div>
-          <div class="stat-kpi-sub">Nhiệm vụ đã tick xong</div>
+        <div class="kpi-metric-item">
+          <span class="kpi-dot" style="background: #16A34A;"></span>
+          <span class="label">Đã xong:</span>
+          <span id="kpiDone" class="val" style="color: #16A34A;">0</span>
         </div>
       </div>
 
-      <div class="workload-section">
-        <div class="workload-title">
-          <span>Phân bổ khối lượng công việc theo nhân sự (Nhấp để lọc nhanh)</span>
-          <span style="font-size: 0.8rem; color: var(--text-muted); font-weight: 400;">(Xanh lá: Xong | Xanh dương: Đang làm | Đỏ: Quá hạn | Xám: Lên lịch)</span>
+      <div class="kpi-progress-bar-wrap">
+        <div class="kpi-bar-track">
+          <div id="barDone" class="kpi-bar-fill-done" style="width: 0%;"></div>
+          <div id="barDoing" class="kpi-bar-fill-doing" style="width: 0%;"></div>
+          <div id="barOverdue" class="kpi-bar-fill-overdue" style="width: 0%;"></div>
+          <div id="barSched" class="kpi-bar-fill-sched" style="width: 0%;"></div>
         </div>
-        <div id="personBarsGrid" class="person-bars-grid"></div>
+        <span id="pctText" style="font-family: var(--font-mono); font-size: 0.86rem; font-weight: 700; color: var(--brand);">0%</span>
       </div>
     </div>
 
-    <!-- CONTROLS & FILTER BAR -->
-    <div class="controls-bar">
-      <div class="controls-top-row">
-        <div class="search-box">
-          <i class="fa-solid fa-magnifying-glass search-icon"></i>
-          <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm nhanh tên việc, dự án, KPI, mô tả hoặc người phụ trách...">
-        </div>
+    <!-- AVATAR TRACK (CHỌN NHÂN SỰ GỌN GÀNG) -->
+    <div class="avatar-filter-section">
+      <div class="avatar-filter-title">
+        <span><i class="fa-solid fa-user-check"></i> Chọn nhân sự để xem việc riêng:</span>
+        <span id="activeFilterDesc" style="color: var(--brand); font-weight: 600; text-transform: none;">Đang xem tất cả</span>
+      </div>
+      <div class="avatar-chips-track" id="avatarChipsTrack">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
 
-        <div class="view-mode-tabs">
-          <button class="view-tab-btn active" data-view="assignee">
-            <i class="fa-solid fa-users"></i>
-            <span>Theo Người</span>
-          </button>
-          <button class="view-tab-btn" data-view="table">
-            <i class="fa-solid fa-table-list"></i>
-            <span>Bảng Chi Tiết</span>
-          </button>
-          <button class="view-tab-btn" data-view="kanban">
-            <i class="fa-solid fa-table-columns"></i>
-            <span>Kanban</span>
-          </button>
-          <button class="view-tab-btn" data-view="project">
-            <i class="fa-solid fa-folder-tree"></i>
-            <span>Theo Dự Án</span>
-          </button>
-        </div>
+    <!-- TOOLBAR & VIEW SELECTOR -->
+    <div class="toolbar-row">
+      <div class="search-input-wrap">
+        <i class="fa-solid fa-magnifying-glass"></i>
+        <input type="text" id="searchField" class="search-field" placeholder="Tìm kiếm nhanh việc, KPI, dự án...">
+      </div>
 
-        <select id="sortSelect" class="sort-select">
-          <option value="stt-asc">Sắp xếp: Theo STT</option>
-          <option value="deadline-asc">Sắp xếp: Deadline sớm nhất</option>
-          <option value="prio-desc">Sắp xếp: Ưu tiên (Rất cao → TB)</option>
-          <option value="weight-desc">Sắp xếp: Trọng số (10 → 1)</option>
+      <div class="secondary-filters">
+        <select id="projectSelect" class="filter-select">
+          <option value="all">Tất cả dự án</option>
         </select>
-      </div>
 
-      <div class="filter-section">
-        <div class="filter-row">
-          <div class="filter-label"><i class="fa-regular fa-user"></i> Nhân sự:</div>
-          <div class="filter-pills" id="assigneeFilterPills"></div>
-        </div>
+        <select id="statusSelect" class="filter-select">
+          <option value="all">Tất cả trạng thái</option>
+          <option value="Quá hạn">Quá hạn</option>
+          <option value="Đang thực hiện">Đang thực hiện</option>
+          <option value="Lên lịch">Lên lịch</option>
+          <option value="Hoàn thành">Đã hoàn thành</option>
+        </select>
 
-        <div class="filter-row">
-          <div class="filter-label"><i class="fa-regular fa-circle-check"></i> Trạng thái:</div>
-          <div class="filter-pills" id="statusFilterPills">
-            <div class="pill active" data-filter-type="status" data-filter-val="all">Tất cả</div>
-            <div class="pill" data-filter-type="status" data-filter-val="Quá hạn">Quá hạn</div>
-            <div class="pill" data-filter-type="status" data-filter-val="Đang thực hiện">Đang làm</div>
-            <div class="pill" data-filter-type="status" data-filter-val="Lên lịch">Lên lịch</div>
-            <div class="pill" data-filter-type="status" data-filter-val="Hoàn thành">Đã xong</div>
-          </div>
-        </div>
-
-        <div class="filter-row">
-          <div class="filter-label"><i class="fa-solid fa-diagram-project"></i> Dự án:</div>
-          <div class="filter-pills" id="projectFilterPills"></div>
+        <div class="view-switcher">
+          <button class="view-btn active" data-view="focus" title="Xem theo mức độ gấp (Rất dễ theo dõi)">
+            <i class="fa-solid fa-bullseye"></i> Tiêu điểm
+          </button>
+          <button class="view-btn" data-view="week" title="Xem chia theo 4 tuần">
+            <i class="fa-regular fa-calendar-days"></i> Theo Tuần
+          </button>
+          <button class="view-btn" data-view="table" title="Dạng danh sách bảng phẳng">
+            <i class="fa-solid fa-list-check"></i> Danh sách
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- MAIN VIEW CONTAINER -->
-    <main id="mainViewContainer"></main>
+    <!-- MAIN VIEW AREA -->
+    <main id="mainViewArea"></main>
 
   </div>
 
-  <!-- TASK DETAIL MODAL -->
-  <div id="taskModal" class="modal-overlay">
-    <div class="modal-card">
-      <div class="modal-header">
-        <div class="modal-title-box">
-          <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 6px;">
-            <span id="modalTaskStt" class="prio-badge tb" style="font-family: var(--font-mono);">#STT</span>
-            <span id="modalTaskProject" class="project-tag">Dự án</span>
-            <span id="modalTaskStatus" class="status-badge">Trạng thái</span>
-            <span id="modalTaskLevel" class="prio-badge">Ưu tiên</span>
+  <!-- MODAL DETAIL -->
+  <div id="modalOverlay" class="modal-overlay">
+    <div class="modal-sheet">
+      <div class="modal-head">
+        <div>
+          <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 4px;">
+            <span id="mStt" style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-faint);">#STT</span>
+            <span id="mProject" class="project-pill" style="font-size: 0.74rem;">Dự án</span>
+            <span id="mStatusBadge" style="font-size: 0.72rem; padding: 2px 7px; border-radius: 4px; font-weight: 600;">Trạng thái</span>
           </div>
-          <h2 id="modalTaskTitle">Tên nhiệm vụ</h2>
+          <h2 id="mTitle" style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); line-height: 1.35;">Tiêu đề</h2>
         </div>
-        <button id="modalCloseBtn" class="modal-close-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
+        <button id="mCloseBtn" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
       <div class="modal-body">
-        <div class="detail-grid">
-          <div class="detail-item">
-            <div class="detail-item-label">Người phụ trách</div>
-            <div id="modalTaskAssignee" class="detail-item-value">-</div>
+        <div class="info-grid">
+          <div>
+            <div class="info-cell-label">Phụ trách</div>
+            <div id="mAssignee" class="info-cell-val">-</div>
           </div>
-          <div class="detail-item">
-            <div class="detail-item-label">Trọng số</div>
-            <div id="modalTaskWeight" class="detail-item-value">-</div>
+          <div>
+            <div class="info-cell-label">Mức ưu tiên</div>
+            <div id="mLevel" class="info-cell-val">-</div>
           </div>
-          <div class="detail-item">
-            <div class="detail-item-label">Timeline</div>
-            <div id="modalTaskTimeline" class="detail-item-value date-mono">-</div>
+          <div>
+            <div class="info-cell-label">Hạn chót (Deadline)</div>
+            <div id="mDeadline" class="info-cell-val" style="font-family: var(--font-mono);">-</div>
           </div>
-          <div class="detail-item">
-            <div class="detail-item-label">Giờ chót & Hạn còn</div>
-            <div id="modalTaskDeadline" class="detail-item-value date-mono">-</div>
+          <div>
+            <div class="info-cell-label">Tình trạng hạn</div>
+            <div id="mDaysLeft" class="info-cell-val" style="color: #DC2626;">-</div>
           </div>
         </div>
 
-        <div class="detail-block">
-          <div style="font-size: 0.8rem; text-transform: uppercase; font-weight: 700; color: var(--text-secondary); margin-bottom: 6px;">
-            <i class="fa-solid fa-bullseye"></i> Mô tả chi tiết & KPI
+        <div>
+          <div style="font-size: 0.76rem; font-weight: 700; text-transform: uppercase; color: var(--text-muted); margin-bottom: 6px;">
+            <i class="fa-solid fa-file-lines"></i> Mô tả chi tiết & KPI
           </div>
-          <div id="modalTaskDesc" class="detail-desc-box"></div>
+          <div id="mDesc" class="desc-box"></div>
         </div>
       </div>
 
-      <div class="modal-footer">
+      <div class="modal-foot">
         <div style="display: flex; align-items: center; gap: 8px;">
-          <input type="checkbox" id="modalCheckbox" class="task-checkbox" style="width: 20px; height: 20px;">
-          <label for="modalCheckbox" style="font-size: 0.88rem; font-weight: 600; cursor: pointer;">Đánh dấu hoàn thành</label>
+          <input type="checkbox" id="mDoneCheck" class="task-checkbox-custom">
+          <label for="mDoneCheck" style="font-size: 0.86rem; font-weight: 600; cursor: pointer;">Đã hoàn thành việc này</label>
         </div>
-
-        <div style="display: flex; gap: 8px;">
-          <select id="modalStatusSelect" class="sort-select" style="padding: 7px 12px; font-size: 0.82rem;">
-            <option value="Quá hạn">Quá hạn</option>
-            <option value="Đang thực hiện">Đang thực hiện</option>
-            <option value="Lên lịch">Lên lịch</option>
-            <option value="Hoàn thành">Hoàn thành</option>
-          </select>
-          <button id="modalOkBtn" class="btn-modal-action btn-modal-done">
-            <i class="fa-solid fa-check"></i> Đóng & Lưu
-          </button>
-        </div>
+        <button id="mOkBtn" class="btn-save-modal">Xong</button>
       </div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT APP LOGIC -->
   <script>
-    // Database from bundle.js
     const DB = window.SSPORT_DATABASE || { months: [], tasks: {} };
-
-    let currentMonth = DB.months.find(m => m.is_current)?.id || (DB.months[0]?.id || '2026-11');
+    let currentMonth = DB.months.find(m => m.is_current)?.id || '2026-11';
     let currentTasks = [];
     let taskDoneMap = {};
     let taskStatusMap = {};
 
-    let currentView = 'assignee';
-    let currentAssigneeFilter = 'all';
-    let currentStatusFilter = 'all';
-    let currentProjectFilter = 'all';
-    let currentSearch = '';
-    let currentSort = 'stt-asc';
-    let activeModalTaskId = null;
+    let activeAssignee = 'all';
+    let activeProject = 'all';
+    let activeStatus = 'all';
+    let activeSearch = '';
+    let currentView = 'focus'; // 'focus' | 'week' | 'table'
+    let activeModalStt = null;
 
     function getStorageKeys() {
       return {
@@ -1410,7 +1066,7 @@
       };
     }
 
-    function loadMonthData(monthId) {
+    function loadMonth(monthId) {
       currentMonth = monthId;
       const keys = getStorageKeys();
       taskDoneMap = JSON.parse(localStorage.getItem(keys.done) || '{}');
@@ -1422,19 +1078,12 @@
         return { ...t, done: isDone, status: status };
       });
 
-      const mMeta = DB.months.find(m => m.id === monthId);
-      document.getElementById('dashboardMonthTitle').innerText = `Tổng Quan Tiến Độ — ${mMeta?.label || monthId}`;
-
-      currentAssigneeFilter = 'all';
-      currentStatusFilter = 'all';
-      currentProjectFilter = 'all';
-
-      setupFilterPills();
-      updateStats();
-      renderView();
+      populateFilters();
+      updateKpis();
+      renderMain();
     }
 
-    function initMonthSelector() {
+    function populateMonthSelect() {
       const select = document.getElementById('monthSelect');
       select.innerHTML = '';
       DB.months.forEach(m => {
@@ -1444,18 +1093,87 @@
         if (m.id === currentMonth) opt.selected = true;
         select.appendChild(opt);
       });
+      select.addEventListener('change', (e) => loadMonth(e.target.value));
+    }
 
-      select.addEventListener('change', (e) => {
-        loadMonthData(e.target.value);
+    function populateFilters() {
+      // 1. Avatar chips
+      const assigneesSet = new Set();
+      currentTasks.forEach(t => t.assignee.split(',').forEach(a => { if (a.trim()) assigneesSet.add(a.trim()); }));
+      const assignees = Array.from(assigneesSet).sort();
+
+      const track = document.getElementById('avatarChipsTrack');
+      track.innerHTML = `
+        <div class="avatar-chip ${activeAssignee === 'all' ? 'active' : ''}" data-val="all">
+          <div class="avatar-circle"><i class="fa-solid fa-users"></i></div>
+          <span class="avatar-name">Tất cả</span>
+          <span class="avatar-badge-count">${currentTasks.length}</span>
+        </div>
+      `;
+
+      assignees.forEach(name => {
+        const count = currentTasks.filter(t => t.assignee.split(',').map(s => s.trim()).includes(name)).length;
+        const chip = document.createElement('div');
+        chip.className = `avatar-chip ${activeAssignee === name ? 'active' : ''}`;
+        chip.setAttribute('data-val', name);
+        chip.innerHTML = `
+          <div class="avatar-circle">${name.charAt(0)}</div>
+          <span class="avatar-name">${name}</span>
+          <span class="avatar-badge-count">${count}</span>
+        `;
+        track.appendChild(chip);
+      });
+
+      track.querySelectorAll('.avatar-chip').forEach(chip => {
+        chip.addEventListener('click', () => {
+          track.querySelectorAll('.avatar-chip').forEach(c => c.classList.remove('active'));
+          chip.classList.add('active');
+          activeAssignee = chip.getAttribute('data-val');
+          document.getElementById('activeFilterDesc').innerText = activeAssignee === 'all' ? 'Đang xem tất cả nhân sự' : `Đang lọc: ${activeAssignee}`;
+          renderMain();
+        });
+      });
+
+      // 2. Project dropdown
+      const pSelect = document.getElementById('projectSelect');
+      const projects = Array.from(new Set(currentTasks.map(t => t.project).filter(Boolean))).sort();
+      pSelect.innerHTML = `<option value="all">Tất cả dự án (${projects.length})</option>`;
+      projects.forEach(p => {
+        const opt = document.createElement('option');
+        opt.value = p;
+        opt.innerText = p;
+        pSelect.appendChild(opt);
       });
     }
 
-    function getFilteredTasks() {
-      let tasks = [...currentTasks];
+    function updateKpis() {
+      const total = currentTasks.length;
+      const done = currentTasks.filter(t => t.done || t.status === 'Hoàn thành').length;
+      const overdue = currentTasks.filter(t => t.status === 'Quá hạn' && !t.done).length;
+      const doing = currentTasks.filter(t => t.status === 'Đang thực hiện' && !t.done).length;
+      const sched = currentTasks.filter(t => t.status === 'Lên lịch' && !t.done).length;
 
-      if (currentSearch) {
-        const q = currentSearch.toLowerCase();
-        tasks = tasks.filter(t => 
+      document.getElementById('kpiTotal').innerText = total;
+      document.getElementById('kpiDone').innerText = done;
+      document.getElementById('kpiOverdue').innerText = overdue;
+      document.getElementById('kpiDoing').innerText = doing;
+      document.getElementById('kpiSched').innerText = sched;
+
+      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
+      document.getElementById('pctText').innerText = `${pct}%`;
+
+      document.getElementById('barDone').style.width = `${pct}%`;
+      document.getElementById('barDoing').style.width = `${Math.round((doing / total) * 100)}%`;
+      document.getElementById('barOverdue').style.width = `${Math.round((overdue / total) * 100)}%`;
+      document.getElementById('barSched').style.width = `${Math.round((sched / total) * 100)}%`;
+    }
+
+    function getFilteredList() {
+      let list = [...currentTasks];
+
+      if (activeSearch) {
+        const q = activeSearch.toLowerCase();
+        list = list.filter(t => 
           (t.task && t.task.toLowerCase().includes(q)) ||
           (t.project && t.project.toLowerCase().includes(q)) ||
           (t.desc && t.desc.toLowerCase().includes(q)) ||
@@ -1463,463 +1181,225 @@
         );
       }
 
-      if (currentAssigneeFilter !== 'all') {
-        tasks = tasks.filter(t => t.assignee.split(',').map(s => s.trim()).includes(currentAssigneeFilter));
+      if (activeAssignee !== 'all') {
+        list = list.filter(t => t.assignee.split(',').map(s => s.trim()).includes(activeAssignee));
       }
 
-      if (currentStatusFilter !== 'all') {
-        tasks = tasks.filter(t => t.status === currentStatusFilter);
+      if (activeProject !== 'all') {
+        list = list.filter(t => t.project === activeProject);
       }
 
-      if (currentProjectFilter !== 'all') {
-        tasks = tasks.filter(t => t.project === currentProjectFilter);
+      if (activeStatus !== 'all') {
+        list = list.filter(t => t.status === activeStatus);
       }
 
-      tasks.sort((a, b) => {
-        if (currentSort === 'stt-asc') return a.stt - b.stt;
-        if (currentSort === 'weight-desc') return (parseInt(b.weight) || 0) - (parseInt(a.weight) || 0);
-        if (currentSort === 'prio-desc') {
-          const s = { 'Rất cao': 3, 'Cao': 2, 'TB': 1, 'Thấp': 0 };
-          return (s[b.level] || 0) - (s[a.level] || 0);
-        }
-        if (currentSort === 'deadline-asc') {
-          const parseD = (str) => {
-            if (!str) return '999999';
-            const p = str.split('/');
-            return p.length === 3 ? '20' + p[2] + p[1].padStart(2, '0') + p[0].padStart(2, '0') : str;
-          };
-          return parseD(a.end_date).localeCompare(parseD(b.end_date));
-        }
-        return 0;
-      });
-
-      return tasks;
+      return list;
     }
 
-    function setupFilterPills() {
-      // Assignees
-      const assigneesSet = new Set();
-      currentTasks.forEach(t => t.assignee.split(',').forEach(a => { if (a.trim()) assigneesSet.add(a.trim()); }));
-      const assignees = Array.from(assigneesSet).sort();
+    function renderTaskCard(t) {
+      const isDone = t.done || t.status === 'Hoàn thành';
+      const isOverdue = t.status === 'Quá hạn' && !isDone;
 
-      const aContainer = document.getElementById('assigneeFilterPills');
-      aContainer.innerHTML = `<div class="pill active" data-filter-type="assignee" data-filter-val="all">Tất cả <span class="badge-count">${currentTasks.length}</span></div>`;
-      assignees.forEach(name => {
-        const count = currentTasks.filter(t => t.assignee.split(',').map(s => s.trim()).includes(name)).length;
-        const pill = document.createElement('div');
-        pill.className = `pill ${currentAssigneeFilter === name ? 'active' : ''}`;
-        pill.setAttribute('data-filter-type', 'assignee');
-        pill.setAttribute('data-filter-val', name);
-        pill.innerHTML = `${name} <span class="badge-count">${count}</span>`;
-        aContainer.appendChild(pill);
-      });
-
-      // Projects
-      const projects = Array.from(new Set(currentTasks.map(t => t.project).filter(Boolean))).sort();
-      const pContainer = document.getElementById('projectFilterPills');
-      pContainer.innerHTML = `<div class="pill active" data-filter-type="project" data-filter-val="all">Tất cả dự án <span class="badge-count">${currentTasks.length}</span></div>`;
-      projects.forEach(p => {
-        const count = currentTasks.filter(t => t.project === p).length;
-        const pill = document.createElement('div');
-        pill.className = `pill ${currentProjectFilter === p ? 'active' : ''}`;
-        pill.setAttribute('data-filter-type', 'project');
-        pill.setAttribute('data-filter-val', p);
-        pill.innerHTML = `${p} <span class="badge-count">${count}</span>`;
-        pContainer.appendChild(pill);
-      });
-
-      // Bind events
-      document.querySelectorAll('.filter-section .pill').forEach(pill => {
-        pill.addEventListener('click', () => {
-          const type = pill.getAttribute('data-filter-type');
-          const val = pill.getAttribute('data-filter-val');
-          if (type === 'assignee') currentAssigneeFilter = val;
-          if (type === 'status') currentStatusFilter = val;
-          if (type === 'project') currentProjectFilter = val;
-
-          pill.parentElement.querySelectorAll('.pill').forEach(p => p.classList.remove('active'));
-          pill.classList.add('active');
-
-          renderView();
-          updateStats();
-        });
-      });
-    }
-
-    function updateStats() {
-      const total = currentTasks.length;
-      const done = currentTasks.filter(t => t.status === 'Hoàn thành' || t.done).length;
-      const overdue = currentTasks.filter(t => t.status === 'Quá hạn' && !t.done).length;
-      const progress = currentTasks.filter(t => t.status === 'Đang thực hiện' && !t.done).length;
-      const scheduled = currentTasks.filter(t => t.status === 'Lên lịch' && !t.done).length;
-      const pct = total > 0 ? Math.round((done / total) * 100) : 0;
-
-      document.getElementById('statTotal').innerText = total;
-      document.getElementById('statDone').innerText = done;
-      document.getElementById('statOverdue').innerText = overdue;
-      document.getElementById('statInProgress').innerText = progress;
-      document.getElementById('statScheduled').innerText = scheduled;
-      document.getElementById('overallProgressText').innerText = `${pct}% Hoàn thành (${done}/${total})`;
-
-      // Workload bars
-      const assigneesSet = new Set();
-      currentTasks.forEach(t => t.assignee.split(',').forEach(a => { if (a.trim()) assigneesSet.add(a.trim()); }));
-      const assignees = Array.from(assigneesSet).sort();
-
-      const container = document.getElementById('personBarsGrid');
-      container.innerHTML = '';
-      assignees.forEach(name => {
-        const pTasks = currentTasks.filter(t => t.assignee.split(',').map(s => s.trim()).includes(name));
-        const pTotal = pTasks.length;
-        if (pTotal === 0) return;
-
-        const pDone = pTasks.filter(t => t.status === 'Hoàn thành' || t.done).length;
-        const pOverdue = pTasks.filter(t => t.status === 'Quá hạn' && !t.done).length;
-        const pDoing = pTasks.filter(t => t.status === 'Đang thực hiện' && !t.done).length;
-        const pSched = pTasks.filter(t => t.status === 'Lên lịch' && !t.done).length;
-
-        const card = document.createElement('div');
-        card.className = 'person-bar-item';
-        card.innerHTML = `
-          <div class="person-bar-header">
-            <div class="person-name"><i class="fa-solid fa-user-tag" style="color: var(--accent); font-size: 0.8rem;"></i> ${name}</div>
-            <div class="person-count"><strong>${pDone}</strong>/${pTotal} việc (${Math.round((pDone/pTotal)*100)}%)</div>
-          </div>
-          <div class="person-progress-track">
-            <div class="person-progress-done" style="width: ${Math.round((pDone/pTotal)*100)}%;"></div>
-            <div class="person-progress-doing" style="width: ${Math.round((pDoing/pTotal)*100)}%;"></div>
-            <div class="person-progress-overdue" style="width: ${Math.round((pOverdue/pTotal)*100)}%;"></div>
-            <div class="person-progress-scheduled" style="width: ${Math.round((pSched/pTotal)*100)}%;"></div>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-size: 0.72rem; color: var(--text-muted);">
-            <span>Quá hạn: <b style="color: #DC2626;">${pOverdue}</b></span>
-            <span>Đang làm: <b style="color: #0284C7;">${pDoing}</b></span>
-            <span>Chờ: ${pSched}</span>
-          </div>
-        `;
-        card.addEventListener('click', () => {
-          currentAssigneeFilter = name;
-          document.querySelectorAll('#assigneeFilterPills .pill').forEach(p => {
-            if (p.getAttribute('data-filter-val') === name) p.classList.add('active');
-            else p.classList.remove('active');
-          });
-          renderView();
-        });
-        container.appendChild(card);
-      });
-    }
-
-    function getStatusClass(s) {
-      if (s === 'Quá hạn') return 'quahan';
-      if (s === 'Đang thực hiện') return 'danglam';
-      if (s === 'Lên lịch') return 'lenlich';
-      if (s === 'Hoàn thành') return 'hoanthanh';
-      return 'lenlich';
-    }
-
-    function getLevelClass(l) {
-      if (l === 'Rất cao') return 'ratcao';
-      if (l === 'Cao') return 'cao';
-      return 'tb';
-    }
-
-    // View 1: Assignee View
-    function renderAssigneeView(tasks) {
-      const container = document.getElementById('mainViewContainer');
-      if (tasks.length === 0) {
-        container.innerHTML = `<div class="empty-state"><i class="fa-solid fa-list-check"></i><p>Không có nhiệm vụ nào phù hợp.</p></div>`;
-        return;
-      }
-
-      const assigneesSet = new Set();
-      tasks.forEach(t => t.assignee.split(',').forEach(a => { if (a.trim()) assigneesSet.add(a.trim()); }));
-      let targetAssignees = Array.from(assigneesSet).sort();
-      if (currentAssigneeFilter !== 'all') targetAssignees = [currentAssigneeFilter];
-
-      let html = '<div class="assignee-view-grid">';
-      targetAssignees.forEach(name => {
-        const personTasks = tasks.filter(t => t.assignee.split(',').map(s => s.trim()).includes(name));
-        if (personTasks.length === 0) return;
-
-        const doneCount = personTasks.filter(t => t.status === 'Hoàn thành' || t.done).length;
-        const overdueCount = personTasks.filter(t => t.status === 'Quá hạn' && !t.done).length;
-
-        html += `
-          <div class="person-card">
-            <div class="person-card-header">
-              <div class="person-avatar-wrap">
-                <div class="person-avatar">${name.charAt(0)}</div>
-                <div class="person-info">
-                  <h3>${name}</h3>
-                  <p>${personTasks.length} nhiệm vụ phụ trách</p>
-                </div>
-              </div>
-              <div class="person-badge-summary">
-                ${overdueCount > 0 ? `<span class="status-badge quahan">${overdueCount} trễ</span>` : ''}
-                <span class="status-badge hoanthanh">${doneCount}/${personTasks.length}</span>
+      return `
+        <div class="task-card-row ${isDone ? 'is-done' : ''}" onclick="openModal(${t.stt})">
+          <div class="task-left-col">
+            <input type="checkbox" class="task-checkbox-custom" ${isDone ? 'checked' : ''} onclick="event.stopPropagation(); toggleDone(${t.stt})">
+            <span class="task-stt">#${t.stt}</span>
+            <div class="task-title-wrap">
+              <div class="task-name">${t.task}</div>
+              <div class="task-meta-sub">
+                <span class="project-pill">${t.project}</span>
+                <span>• Hạn: <b>${t.end_date || '-'}</b> (${t.deadline_time || '17:00'})</span>
+                ${t.days_left ? `<span style="color: ${isOverdue ? '#DC2626' : 'inherit'}; font-weight: 600;">• ${t.days_left}</span>` : ''}
               </div>
             </div>
-            <div class="person-card-body">
-        `;
-
-        personTasks.forEach(t => {
-          const isDone = t.status === 'Hoàn thành' || t.done;
-          html += `
-            <div class="person-task-item ${isDone ? 'is-done' : ''}" onclick="openTaskModal(${t.stt})">
-              <div class="person-task-top">
-                <div style="display: flex; gap: 8px; align-items: flex-start; flex: 1;">
-                  <input type="checkbox" class="task-checkbox" ${isDone ? 'checked' : ''} onclick="event.stopPropagation(); toggleTaskDone(${t.stt})">
-                  <div>
-                    <div style="display: flex; gap: 5px; margin-bottom: 3px; align-items: center; flex-wrap: wrap;">
-                      <span class="prio-badge ${getLevelClass(t.level)}">${t.level || 'TB'}</span>
-                      <span class="project-tag">${t.project}</span>
-                    </div>
-                    <div class="task-title" style="font-size: 0.86rem; font-weight: 600; color: var(--text-main);">${t.task}</div>
-                  </div>
-                </div>
-                <span class="status-badge ${getStatusClass(t.status)}">${t.status}</span>
-              </div>
-              <div class="person-task-bottom">
-                <span><i class="fa-regular fa-calendar"></i> DL: <b class="date-mono">${t.end_date || '-'}</b> (${t.deadline_time || '17:00'})</span>
-                <span style="color: ${t.days_left === 'Trễ DL' ? '#DC2626' : 'inherit'}; font-weight: 600;">${t.days_left || ''}</span>
-              </div>
+          </div>
+          <div class="task-right-col">
+            <div class="assignee-avatar-group">
+              ${t.assignee.split(',').map(a => `<span class="assignee-badge">${a.trim()}</span>`).join('')}
             </div>
-          `;
-        });
-
-        html += `</div></div>`;
-      });
-      html += '</div>';
-      container.innerHTML = html;
-    }
-
-    // View 2: Table View
-    function renderTableView(tasks) {
-      const container = document.getElementById('mainViewContainer');
-      if (tasks.length === 0) {
-        container.innerHTML = `<div class="empty-state"><i class="fa-solid fa-list-check"></i><p>Không có nhiệm vụ nào phù hợp.</p></div>`;
-        return;
-      }
-
-      let html = `
-        <div class="table-container">
-          <table class="task-table">
-            <thead>
-              <tr>
-                <th style="width: 44px; text-align: center;">Xong</th>
-                <th style="width: 50px;">STT</th>
-                <th>Dự án</th>
-                <th>Nhiệm vụ chính & KPI</th>
-                <th>Phụ trách</th>
-                <th>Ưu tiên</th>
-                <th>Hạn chót</th>
-                <th>Tình trạng</th>
-                <th>Trạng thái</th>
-              </tr>
-            </thead>
-            <tbody>
+            <span class="deadline-badge ${isOverdue ? 'overdue' : 'normal'}">
+              ${t.status}
+            </span>
+          </div>
+        </div>
       `;
+    }
 
-      tasks.forEach(t => {
-        const isDone = t.status === 'Hoàn thành' || t.done;
+    // View 1: Focus View (Grouped by Urgency - DỄ NHÌN NHẤT)
+    function renderFocusView(tasks) {
+      const overdue = tasks.filter(t => t.status === 'Quá hạn' && !t.done);
+      const doing = tasks.filter(t => t.status === 'Đang thực hiện' && !t.done);
+      const sched = tasks.filter(t => t.status === 'Lên lịch' && !t.done);
+      const done = tasks.filter(t => t.done || t.status === 'Hoàn thành');
+
+      let html = '';
+
+      if (overdue.length > 0) {
         html += `
-          <tr class="${isDone ? 'task-done' : ''}" onclick="openTaskModal(${t.stt})" style="cursor: pointer;">
+          <div class="focus-group">
+            <div class="focus-group-header">
+              <div class="focus-icon-circle" style="background: #FEE2E2; color: #DC2626;"><i class="fa-solid fa-triangle-exclamation"></i></div>
+              <div class="focus-title" style="color: #991B1B;">Cần giải quyết gấp / Quá hạn</div>
+              <span class="focus-count" style="color: #DC2626; font-weight: 700;">${overdue.length}</span>
+            </div>
+            <div class="task-cards-list">${overdue.map(renderTaskCard).join('')}</div>
+          </div>
+        `;
+      }
+
+      if (doing.length > 0) {
+        html += `
+          <div class="focus-group">
+            <div class="focus-group-header">
+              <div class="focus-icon-circle" style="background: #E0F2FE; color: #0284C7;"><i class="fa-solid fa-spinner"></i></div>
+              <div class="focus-title" style="color: #075985;">Đang triển khai tuần này</div>
+              <span class="focus-count">${doing.length}</span>
+            </div>
+            <div class="task-cards-list">${doing.map(renderTaskCard).join('')}</div>
+          </div>
+        `;
+      }
+
+      if (sched.length > 0) {
+        html += `
+          <div class="focus-group">
+            <div class="focus-group-header">
+              <div class="focus-icon-circle" style="background: #F1F5F9; color: #64748B;"><i class="fa-solid fa-calendar-days"></i></div>
+              <div class="focus-title" style="color: #475569;">Kế hoạch các mốc tới</div>
+              <span class="focus-count">${sched.length}</span>
+            </div>
+            <div class="task-cards-list">${sched.map(renderTaskCard).join('')}</div>
+          </div>
+        `;
+      }
+
+      if (done.length > 0) {
+        html += `
+          <div class="focus-group">
+            <div class="focus-group-header">
+              <div class="focus-icon-circle" style="background: #E8F5E9; color: #16A34A;"><i class="fa-solid fa-check"></i></div>
+              <div class="focus-title" style="color: #166534;">Đã hoàn thành</div>
+              <span class="focus-count">${done.length}</span>
+            </div>
+            <div class="task-cards-list">${done.map(renderTaskCard).join('')}</div>
+          </div>
+        `;
+      }
+
+      if (html === '') {
+        html = `<div class="empty-state"><i class="fa-solid fa-circle-check" style="font-size: 2.5rem; color: #16A34A; margin-bottom: 12px;"></i><p>Không có đầu việc nào phù hợp với bộ lọc.</p></div>`;
+      }
+
+      return html;
+    }
+
+    // View 2: Timeline Week View
+    function renderWeekView(tasks) {
+      const getWeek = (dateStr) => {
+        if (!dateStr) return 4;
+        const day = parseInt(dateStr.split('/')[0]);
+        if (day <= 8) return 1;
+        if (day <= 15) return 2;
+        if (day <= 22) return 3;
+        return 4;
+      };
+
+      const weeks = [
+        { id: 1, title: 'Tuần 1 (02/11 - 08/11)', desc: 'Chốt dữ liệu đầu vào, liên hệ công nợ & giải LTV' },
+        { id: 2, title: 'Tuần 2 (09/11 - 15/11)', desc: 'Thu cọc đồng phục, phát cam kết Foxes, chốt TH ĐBP' },
+        { id: 3, title: 'Tuần 3 (16/11 - 22/11)', desc: 'Thu 100% tiền giải, giải Him Lam, thu tiền Foxes' },
+        { id: 4, title: 'Tuần 4 (23/11 - 30/11)', desc: 'Giao đồng phục, chốt công nợ & tổng kết tháng' }
+      ];
+
+      let html = '';
+      weeks.forEach(w => {
+        const wTasks = tasks.filter(t => getWeek(t.end_date) === w.id);
+        const doneCount = wTasks.filter(t => t.done || t.status === 'Hoàn thành').length;
+
+        html += `
+          <div class="timeline-week-card">
+            <div class="timeline-week-header">
+              <div>
+                <div class="timeline-week-title"><i class="fa-solid fa-flag" style="color: var(--brand);"></i> ${w.title}</div>
+                <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 2px;">${w.desc}</div>
+              </div>
+              <div style="font-family: var(--font-mono); font-weight: 700; font-size: 0.82rem; color: var(--brand);">
+                ${doneCount}/${wTasks.length} việc
+              </div>
+            </div>
+            <div class="timeline-week-body">
+              ${wTasks.length > 0 ? wTasks.map(renderTaskCard).join('') : '<div style="font-size: 0.8rem; color: var(--text-faint); padding: 8px 0;">Không có việc trong tuần này.</div>'}
+            </div>
+          </div>
+        `;
+      });
+
+      return html;
+    }
+
+    // View 3: Clean Table View
+    function renderTableView(tasks) {
+      if (tasks.length === 0) return `<div class="empty-state"><p>Không có dữ liệu.</p></div>`;
+
+      let rows = tasks.map(t => {
+        const isDone = t.done || t.status === 'Hoàn thành';
+        return `
+          <tr style="cursor: pointer; opacity: ${isDone ? 0.6 : 1};" onclick="openModal(${t.stt})">
             <td style="text-align: center;" onclick="event.stopPropagation();">
-              <input type="checkbox" class="task-checkbox" ${isDone ? 'checked' : ''} onchange="toggleTaskDone(${t.stt})">
+              <input type="checkbox" class="task-checkbox-custom" ${isDone ? 'checked' : ''} onchange="toggleDone(${t.stt})">
             </td>
-            <td class="date-mono" style="font-weight: 600; color: var(--text-muted);">${t.stt}</td>
-            <td><span class="project-tag">${t.project}</span></td>
+            <td style="font-family: var(--font-mono); font-weight: 600; color: var(--text-faint);">${t.stt}</td>
+            <td><span class="project-pill">${t.project}</span></td>
             <td>
-              <div class="task-name-cell"><span class="task-name-text">${t.task}</span></div>
-              ${t.desc ? `<div class="task-desc-sub">${t.desc}</div>` : ''}
+              <div style="font-weight: 600; color: var(--text-main); ${isDone ? 'text-decoration: line-through;' : ''}">${t.task}</div>
             </td>
             <td>
               <div style="display: flex; gap: 4px; flex-wrap: wrap;">
-                ${t.assignee.split(',').map(a => `<span class="assignee-chip">${a.trim()}</span>`).join('')}
+                ${t.assignee.split(',').map(a => `<span class="assignee-badge">${a.trim()}</span>`).join('')}
               </div>
             </td>
-            <td><span class="prio-badge ${getLevelClass(t.level)}">${t.level || 'TB'}</span></td>
-            <td class="date-mono">
-              <strong>${t.end_date || '-'}</strong>
-              <div style="font-size: 0.72rem; color: var(--text-muted);">${t.deadline_time || '17:00'}</div>
+            <td style="font-family: var(--font-mono); font-size: 0.8rem;">
+              <b>${t.end_date || '-'}</b>
+              <div style="font-size: 0.7rem; color: var(--text-faint);">${t.deadline_time || '17:00'}</div>
             </td>
-            <td class="date-mono" style="font-weight: 600; color: ${t.days_left === 'Trễ DL' ? '#DC2626' : 'inherit'};">
-              ${t.days_left || '-'}
+            <td>
+              <span class="deadline-badge ${t.status === 'Quá hạn' && !isDone ? 'overdue' : 'normal'}">${t.status}</span>
             </td>
-            <td><span class="status-badge ${getStatusClass(t.status)}">${t.status}</span></td>
           </tr>
         `;
-      });
+      }).join('');
 
-      html += `</tbody></table></div>`;
-      container.innerHTML = html;
+      return `
+        <div class="table-box">
+          <table class="clean-table">
+            <thead>
+              <tr>
+                <th style="width: 44px; text-align: center;">Xong</th>
+                <th style="width: 44px;">STT</th>
+                <th>Dự án</th>
+                <th>Nhiệm vụ</th>
+                <th>Phụ trách</th>
+                <th>Hạn chót</th>
+                <th>Trạng thái</th>
+              </tr>
+            </thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+      `;
     }
 
-    // View 3: Kanban View
-    function renderKanbanView(tasks) {
-      const container = document.getElementById('mainViewContainer');
-      const columns = [
-        { key: 'Quá hạn', title: 'Quá Hạn / Cần Gỡ', icon: 'fa-triangle-exclamation', color: '#DC2626' },
-        { key: 'Đang thực hiện', title: 'Đang Thực Hiện', icon: 'fa-spinner', color: '#0284C7' },
-        { key: 'Lên lịch', title: 'Đã Lên Lịch', icon: 'fa-calendar-days', color: '#64748B' },
-        { key: 'Hoàn thành', title: 'Đã Hoàn Thành', icon: 'fa-circle-check', color: '#16A34A' }
-      ];
+    function renderMain() {
+      const area = document.getElementById('mainViewArea');
+      const tasks = getFilteredList();
 
-      let html = '<div class="kanban-board">';
-      columns.forEach(col => {
-        const colTasks = tasks.filter(t => {
-          if (col.key === 'Hoàn thành') return t.status === 'Hoàn thành' || t.done;
-          return t.status === col.key && !t.done;
-        });
-
-        html += `
-          <div class="kanban-col">
-            <div class="kanban-col-header">
-              <div class="kanban-col-title" style="color: ${col.color};">
-                <i class="fa-solid ${col.icon}"></i>
-                <span>${col.title}</span>
-              </div>
-              <span class="badge-count" style="font-family: var(--font-mono); font-weight: 700; background: var(--border-color);">${colTasks.length}</span>
-            </div>
-            <div class="kanban-cards-wrap">
-        `;
-
-        if (colTasks.length === 0) {
-          html += `<div style="text-align: center; color: var(--text-muted); font-size: 0.8rem; padding: 24px 0;">(Không có việc)</div>`;
-        } else {
-          colTasks.forEach(t => {
-            html += `
-              <div class="kanban-card" onclick="openTaskModal(${t.stt})">
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                  <span class="project-tag" style="font-size: 0.7rem;">${t.project}</span>
-                  <span class="prio-badge ${getLevelClass(t.level)}">${t.level || 'TB'}</span>
-                </div>
-                <div class="kanban-card-title">${t.task}</div>
-                <div class="kanban-card-meta">
-                  <span><i class="fa-regular fa-user"></i> ${t.assignee}</span>
-                  <span class="date-mono" style="font-weight: 600;">${t.end_date || ''}</span>
-                </div>
-              </div>
-            `;
-          });
-        }
-
-        html += `</div></div>`;
-      });
-      html += '</div>';
-      container.innerHTML = html;
+      if (currentView === 'focus') area.innerHTML = renderFocusView(tasks);
+      else if (currentView === 'week') area.innerHTML = renderWeekView(tasks);
+      else if (currentView === 'table') area.innerHTML = renderTableView(tasks);
     }
 
-    // View 4: Project View
-    function renderProjectView(tasks) {
-      const container = document.getElementById('mainViewContainer');
-      if (tasks.length === 0) {
-        container.innerHTML = `<div class="empty-state"><i class="fa-solid fa-list-check"></i><p>Không có nhiệm vụ nào phù hợp.</p></div>`;
-        return;
-      }
-
-      const groups = {};
-      tasks.forEach(t => {
-        if (!groups[t.project]) groups[t.project] = [];
-        groups[t.project].push(t);
-      });
-
-      let html = '';
-      Object.keys(groups).sort().forEach(pName => {
-        const gTasks = groups[pName];
-        const done = gTasks.filter(t => t.status === 'Hoàn thành' || t.done).length;
-        const total = gTasks.length;
-        const pct = Math.round((done / total) * 100);
-
-        html += `
-          <div class="project-group-card">
-            <div class="project-group-header">
-              <div class="project-title-left">
-                <i class="fa-solid fa-folder" style="color: var(--accent);"></i>
-                <span>${pName}</span>
-                <span class="badge-count" style="font-size: 0.75rem; background: var(--border-color);">${total} việc</span>
-              </div>
-              <div class="project-progress-wrap">
-                <span style="font-family: var(--font-mono); font-size: 0.8rem; font-weight: 600; color: var(--accent);">${done}/${total} (${pct}%)</span>
-                <div style="width: 100px; height: 8px; background: var(--border-color); border-radius: 4px; overflow: hidden;">
-                  <div style="height: 100%; width: ${pct}%; background: #16A34A;"></div>
-                </div>
-              </div>
-            </div>
-            <div style="padding: 10px 14px; display: flex; flex-direction: column; gap: 8px;">
-        `;
-
-        gTasks.forEach(t => {
-          const isDone = t.status === 'Hoàn thành' || t.done;
-          html += `
-            <div class="person-task-item ${isDone ? 'is-done' : ''}" onclick="openTaskModal(${t.stt})">
-              <div class="person-task-top">
-                <div style="display: flex; gap: 8px; align-items: center; flex: 1;">
-                  <input type="checkbox" class="task-checkbox" ${isDone ? 'checked' : ''} onclick="event.stopPropagation(); toggleTaskDone(${t.stt})">
-                  <span class="date-mono" style="font-weight: 600; color: var(--text-muted); font-size: 0.78rem;">#${t.stt}</span>
-                  <span class="task-title" style="font-weight: 600; color: var(--text-main); font-size: 0.86rem;">${t.task}</span>
-                  <span class="prio-badge ${getLevelClass(t.level)}" style="font-size: 0.7rem;">${t.level || 'TB'}</span>
-                </div>
-                <span class="status-badge ${getStatusClass(t.status)}">${t.status}</span>
-              </div>
-              <div class="person-task-bottom">
-                <span>Phụ trách: <b>${t.assignee}</b></span>
-                <span>Deadline: <b class="date-mono">${t.end_date || '-'} (${t.deadline_time || '17:00'})</b></span>
-                <span style="color: ${t.days_left === 'Trễ DL' ? '#DC2626' : 'inherit'}; font-weight: 600;">${t.days_left || ''}</span>
-              </div>
-            </div>
-          `;
-        });
-
-        html += `</div></div>`;
-      });
-
-      container.innerHTML = html;
-    }
-
-    function renderView() {
-      const tasks = getFilteredTasks();
-      if (currentView === 'assignee') renderAssigneeView(tasks);
-      else if (currentView === 'table') renderTableView(tasks);
-      else if (currentView === 'kanban') renderKanbanView(tasks);
-      else if (currentView === 'project') renderProjectView(tasks);
-    }
-
-    // Modal
-    function openTaskModal(stt) {
-      const task = currentTasks.find(t => t.stt === stt);
-      if (!task) return;
-
-      activeModalTaskId = stt;
-      document.getElementById('modalTaskStt').innerText = '#' + task.stt;
-      document.getElementById('modalTaskProject').innerText = task.project;
-      document.getElementById('modalTaskTitle').innerText = task.task;
-      document.getElementById('modalTaskAssignee').innerText = task.assignee;
-      document.getElementById('modalTaskWeight').innerText = (task.weight || '7') + ' / 10';
-      document.getElementById('modalTaskTimeline').innerText = (task.start_date || '-') + '  →  ' + (task.end_date || '-');
-      document.getElementById('modalTaskDeadline').innerText = (task.deadline_time || '17:00') + ' (' + (task.days_left || '-') + ')';
-      document.getElementById('modalTaskDesc').innerText = task.desc || 'Chưa có mô tả chi tiết.';
-
-      const statusBadge = document.getElementById('modalTaskStatus');
-      statusBadge.className = 'status-badge ' + getStatusClass(task.status);
-      statusBadge.innerText = task.status;
-
-      const levelBadge = document.getElementById('modalTaskLevel');
-      levelBadge.className = 'prio-badge ' + getLevelClass(task.level);
-      levelBadge.innerText = task.level || 'TB';
-
-      document.getElementById('modalCheckbox').checked = task.done || task.status === 'Hoàn thành';
-      document.getElementById('modalStatusSelect').value = task.status;
-
-      document.getElementById('taskModal').style.display = 'flex';
-    }
-
-    function closeTaskModal() {
-      document.getElementById('taskModal').style.display = 'none';
-      activeModalTaskId = null;
-    }
-
-    function toggleTaskDone(stt) {
+    function toggleDone(stt) {
       const keys = getStorageKeys();
       const task = currentTasks.find(t => t.stt === stt);
       if (!task) return;
@@ -1941,55 +1421,67 @@
       localStorage.setItem(keys.done, JSON.stringify(taskDoneMap));
       localStorage.setItem(keys.status, JSON.stringify(taskStatusMap));
 
-      renderView();
-      updateStats();
+      updateKpis();
+      renderMain();
     }
 
-    // Export current month to JSON
-    function exportCurrentMonth() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(currentTasks, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `ssport_tasks_${currentMonth}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
+    function openModal(stt) {
+      const t = currentTasks.find(x => x.stt === stt);
+      if (!t) return;
+      activeModalStt = stt;
+
+      document.getElementById('mStt').innerText = '#' + t.stt;
+      document.getElementById('mProject').innerText = t.project;
+      document.getElementById('mTitle').innerText = t.task;
+      document.getElementById('mAssignee').innerText = t.assignee;
+      document.getElementById('mLevel').innerText = (t.level || 'TB') + ' (Trọng số: ' + (t.weight || '7') + '/10)';
+      document.getElementById('mDeadline').innerText = (t.end_date || '-') + ' (' + (t.deadline_time || '17:00') + ')';
+      document.getElementById('mDaysLeft').innerText = t.days_left || '-';
+      document.getElementById('mDesc').innerText = t.desc || 'Chưa có ghi chú KPI cụ thể.';
+
+      const badge = document.getElementById('mStatusBadge');
+      badge.innerText = t.status;
+      badge.style.background = t.status === 'Quá hạn' ? '#FEE2E2' : (t.status === 'Hoàn thành' ? '#E8F5E9' : '#E0F2FE');
+      badge.style.color = t.status === 'Quá hạn' ? '#991B1B' : (t.status === 'Hoàn thành' ? '#166534' : '#075985');
+
+      document.getElementById('mDoneCheck').checked = t.done || t.status === 'Hoàn thành';
+      document.getElementById('modalOverlay').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('modalOverlay').style.display = 'none';
+      activeModalStt = null;
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      initMonthSelector();
-      loadMonthData(currentMonth);
+      populateMonthSelect();
+      loadMonth(currentMonth);
 
-      // View tabs
-      document.querySelectorAll('.view-tab-btn').forEach(btn => {
+      // Search & Filters
+      document.getElementById('searchField').addEventListener('input', (e) => {
+        activeSearch = e.target.value.trim();
+        renderMain();
+      });
+
+      document.getElementById('projectSelect').addEventListener('change', (e) => {
+        activeProject = e.target.value;
+        renderMain();
+      });
+
+      document.getElementById('statusSelect').addEventListener('change', (e) => {
+        activeStatus = e.target.value;
+        renderMain();
+      });
+
+      // View Switcher
+      document.querySelectorAll('.view-btn').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.view-tab-btn').forEach(b => b.classList.remove('active'));
+          document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
           currentView = btn.getAttribute('data-view');
-          renderView();
+          renderMain();
         });
       });
-
-      // Search & Sort
-      document.getElementById('searchInput').addEventListener('input', (e) => {
-        currentSearch = e.target.value.trim();
-        renderView();
-      });
-
-      document.getElementById('sortSelect').addEventListener('change', (e) => {
-        currentSort = e.target.value;
-        renderView();
-      });
-
-      // Toggle Stats
-      const statsDashboard = document.getElementById('statsDashboard');
-      const toggleStatsBtn = document.getElementById('toggleStatsBtn');
-      toggleStatsBtn.addEventListener('click', () => {
-        const isClosed = statsDashboard.style.display === 'none';
-        statsDashboard.style.display = isClosed ? 'block' : 'none';
-        toggleStatsBtn.classList.toggle('active', isClosed);
-      });
-      toggleStatsBtn.classList.add('active');
 
       // Theme toggle
       document.querySelectorAll('.theme-btn').forEach(btn => {
@@ -2008,61 +1500,33 @@
         else b.classList.remove('active');
       });
 
-      // Reset storage
-      document.getElementById('resetStorageBtn').addEventListener('click', () => {
-        if (confirm(`Bạn có chắc chắn muốn khôi phục trạng thái gốc cho ${currentMonth}?`)) {
+      // Reset
+      document.getElementById('resetBtn').addEventListener('click', () => {
+        if (confirm(`Bạn muốn khôi phục lại trạng thái ban đầu từ Google Sheet?`)) {
           const keys = getStorageKeys();
           localStorage.removeItem(keys.done);
           localStorage.removeItem(keys.status);
-          loadMonthData(currentMonth);
+          loadMonth(currentMonth);
         }
       });
 
-      // Export JSON
-      document.getElementById('exportJsonBtn').addEventListener('click', exportCurrentMonth);
-
-      // Modal bindings
-      document.getElementById('modalCloseBtn').addEventListener('click', closeTaskModal);
-      document.getElementById('taskModal').addEventListener('click', (e) => {
-        if (e.target.id === 'taskModal') closeTaskModal();
+      // Modal
+      document.getElementById('mCloseBtn').addEventListener('click', closeModal);
+      document.getElementById('mOkBtn').addEventListener('click', closeModal);
+      document.getElementById('modalOverlay').addEventListener('click', (e) => {
+        if (e.target.id === 'modalOverlay') closeModal();
       });
-      document.getElementById('modalOkBtn').addEventListener('click', closeTaskModal);
 
-      document.getElementById('modalCheckbox').addEventListener('change', (e) => {
-        if (!activeModalTaskId) return;
-        toggleTaskDone(activeModalTaskId);
-        const task = currentTasks.find(t => t.stt === activeModalTaskId);
-        if (task) {
-          document.getElementById('modalStatusSelect').value = task.status;
-          const statusBadge = document.getElementById('modalTaskStatus');
-          statusBadge.className = 'status-badge ' + getStatusClass(task.status);
-          statusBadge.innerText = task.status;
+      document.getElementById('mDoneCheck').addEventListener('change', (e) => {
+        if (!activeModalStt) return;
+        toggleDone(activeModalStt);
+        const t = currentTasks.find(x => x.stt === activeModalStt);
+        if (t) {
+          const badge = document.getElementById('mStatusBadge');
+          badge.innerText = t.status;
+          badge.style.background = t.status === 'Quá hạn' ? '#FEE2E2' : (t.status === 'Hoàn thành' ? '#E8F5E9' : '#E0F2FE');
+          badge.style.color = t.status === 'Quá hạn' ? '#991B1B' : (t.status === 'Hoàn thành' ? '#166534' : '#075985');
         }
-      });
-
-      document.getElementById('modalStatusSelect').addEventListener('change', (e) => {
-        if (!activeModalTaskId) return;
-        const task = currentTasks.find(t => t.stt === activeModalTaskId);
-        if (!task) return;
-
-        const newSt = e.target.value;
-        const isDone = (newSt === 'Hoàn thành');
-        task.status = newSt;
-        task.done = isDone;
-
-        const keys = getStorageKeys();
-        taskStatusMap[activeModalTaskId] = newSt;
-        taskDoneMap[activeModalTaskId] = isDone;
-        localStorage.setItem(keys.done, JSON.stringify(taskDoneMap));
-        localStorage.setItem(keys.status, JSON.stringify(taskStatusMap));
-
-        document.getElementById('modalCheckbox').checked = isDone;
-        const statusBadge = document.getElementById('modalTaskStatus');
-        statusBadge.className = 'status-badge ' + getStatusClass(newSt);
-        statusBadge.innerText = newSt;
-
-        renderView();
-        updateStats();
       });
     });
   </script>
