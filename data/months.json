@@ -1,0 +1,14 @@
+[
+  {
+    "id": "2026-11",
+    "label": "Tháng 11/2026 (Hiện tại)",
+    "count": 78,
+    "is_current": true
+  },
+  {
+    "id": "2026-10",
+    "label": "Tháng 10/2026 (Lịch sử)",
+    "count": 14,
+    "is_current": false
+  }
+]
