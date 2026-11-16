@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ssport — Kế Hoạch & Tiến Độ Công Việc</title>
-  <meta name="description" content="Bảng theo dõi kế hoạch kinh doanh và checklist công việc Ssport - Tối giản, trực quan, hỗ trợ gắn tag và chỉnh sửa trực tiếp">
+  <meta name="description" content="Bảng theo dõi kế hoạch kinh doanh và checklist công việc Ssport - Tối giản, trực quan, hỗ trợ thêm việc mới, gắn tag và chỉnh sửa trực tiếp">
 
   <!-- Google Fonts & FontAwesome -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -420,11 +420,18 @@
       gap: 12px;
     }
 
+    .toolbar-left-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex: 1;
+      max-width: 520px;
+    }
+
     .search-input-wrap {
       position: relative;
       flex: 1;
-      max-width: 360px;
-      min-width: 240px;
+      min-width: 220px;
     }
 
     .search-input-wrap i {
@@ -450,6 +457,28 @@
     .search-field:focus {
       border-color: var(--brand);
       box-shadow: 0 0 0 3px var(--brand-light);
+    }
+
+    /* NÚT THÊM CÔNG VIỆC NỔI BẬT */
+    .btn-create-task {
+      padding: 9px 16px;
+      border-radius: 10px;
+      background: var(--brand);
+      color: #FFFFFF;
+      font-size: 0.86rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      box-shadow: 0 3px 8px rgba(36, 76, 55, 0.25);
+      white-space: nowrap;
+      transition: all 0.15s ease;
+    }
+    .btn-create-task:hover {
+      background: var(--brand-hover);
+      transform: translateY(-1px);
     }
 
     .secondary-filters {
@@ -627,7 +656,6 @@
       flex-wrap: wrap;
     }
 
-    /* TAG PILLS */
     .project-pill {
       background: var(--bg-subtle);
       padding: 1px 7px;
@@ -713,6 +741,18 @@
       border-radius: 4px;
     }
 
+    .new-task-indicator {
+      font-size: 0.7rem;
+      color: #047857;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      background: #D1FAE5;
+      padding: 1px 6px;
+      border-radius: 4px;
+    }
+
     /* TIMELINE & TABLE VIEWS */
     .timeline-week-card {
       background: var(--bg-card);
@@ -784,7 +824,7 @@
     }
 
     /* ==========================================================================
-       MODAL - CHỈNH SỬA & QUẢN LÝ TAGS
+       MODAL - CHỈNH SỬA & TẠO VIỆC MỚI
        ========================================================================== */
     .modal-overlay {
       display: none;
@@ -1071,6 +1111,23 @@
       cursor: pointer;
     }
 
+    .btn-delete-task {
+      padding: 8px 14px;
+      border-radius: 8px;
+      background: #FEE2E2;
+      color: #991B1B;
+      border: 1px solid #FCA5A5;
+      font-weight: 600;
+      font-size: 0.84rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .btn-delete-task:hover {
+      background: #FCA5A5;
+    }
+
     .toast-notice {
       position: fixed;
       bottom: 24px;
@@ -1196,11 +1253,18 @@
       <div class="avatar-chips-track" id="avatarChipsTrack"></div>
     </div>
 
-    <!-- TOOLBAR & VIEW SELECTOR -->
+    <!-- TOOLBAR & VIEW SELECTOR & NÚT THÊM VIỆC MỚI -->
     <div class="toolbar-row">
-      <div class="search-input-wrap">
-        <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchField" class="search-field" placeholder="Tìm kiếm nhanh việc, tag, KPI...">
+      <div class="toolbar-left-group">
+        <!-- NÚT TẠO VIỆC MỚI NỔI BẬT -->
+        <button id="openCreateModalBtn" class="btn-create-task" title="Tạo thêm đầu việc mới vào kế hoạch">
+          <i class="fa-solid fa-plus"></i> Thêm việc mới
+        </button>
+
+        <div class="search-input-wrap">
+          <i class="fa-solid fa-magnifying-glass"></i>
+          <input type="text" id="searchField" class="search-field" placeholder="Tìm kiếm nhanh việc, tag, KPI...">
+        </div>
       </div>
 
       <div class="secondary-filters">
@@ -1235,7 +1299,7 @@
 
   </div>
 
-  <!-- MODAL DETAIL & DIRECT IN-PLACE EDITING + TAG MANAGER -->
+  <!-- MODAL: TẠO MỚI / CHỈNH SỬA CÔNG VIỆC -->
   <div id="modalOverlay" class="modal-overlay">
     <div class="modal-sheet">
       <div class="modal-head">
@@ -1243,8 +1307,15 @@
           <div style="display: flex; gap: 6px; align-items: center; margin-bottom: 6px; flex-wrap: wrap;">
             <span id="mStt" style="font-family: var(--font-mono); font-size: 0.76rem; font-weight: 700; color: var(--text-faint);">#STT</span>
             <span id="mEditedBadge" class="edited-indicator" style="display: none;"><i class="fa-solid fa-pen"></i> Đã sửa</span>
+            <span id="mNewBadge" class="new-task-indicator" style="display: none;"><i class="fa-solid fa-sparkles"></i> Mới tạo</span>
           </div>
-          <h2 id="mTitle" style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); line-height: 1.35;">Tiêu đề</h2>
+          <!-- Tiêu đề: Khi sửa là text h2, khi tạo mới là ô input nhập tên việc -->
+          <div id="mTitleView">
+            <h2 id="mTitle" style="font-size: 1.15rem; font-weight: 700; color: var(--text-main); line-height: 1.35;">Tiêu đề</h2>
+          </div>
+          <div id="mTitleEditWrap" style="display: none; margin-top: 4px;">
+            <input type="text" id="mTitleInput" class="edit-input" style="font-size: 1rem; font-weight: 700;" placeholder="Nhập tên công việc / nhiệm vụ cần làm...">
+          </div>
         </div>
         <button id="mCloseBtn" class="modal-close"><i class="fa-solid fa-xmark"></i></button>
       </div>
@@ -1254,13 +1325,13 @@
         <div class="edit-field-block">
           <div class="edit-label">
             <span><i class="fa-solid fa-tags" style="color: #2563EB;"></i> Tag phân loại & Dự án:</span>
-            <span style="font-size: 0.72rem; color: var(--text-faint); font-weight: 500;">(Thêm tag để dễ lọc việc)</span>
+            <span style="font-size: 0.72rem; color: var(--text-faint); font-weight: 500;">(Gắn tag để dễ lọc)</span>
           </div>
           <div class="tag-manager-box">
             <div class="active-tags-list" id="mActiveTagsList"></div>
             
             <div class="tag-input-row">
-              <input type="text" id="mNewTagInput" class="tag-input-field" placeholder="Nhập tag mới rồi ấn Enter (VD: Điện Biên, Gấp, Thu tiền, Thiết kế...)">
+              <input type="text" id="mNewTagInput" class="tag-input-field" placeholder="Gõ tag mới rồi ấn Enter (VD: Điện Biên, Gấp, Thu tiền, Thiết kế...)">
               <button id="mAddTagBtn" class="btn-add-tag"><i class="fa-solid fa-plus"></i> Thêm tag</button>
             </div>
 
@@ -1291,7 +1362,7 @@
         <div class="edit-grid-2col">
           <div class="edit-field-block">
             <label class="edit-label">Hạn chót (Deadline):</label>
-            <input type="text" id="mDeadlineInput" class="edit-input" placeholder="VD: 15/11/26">
+            <input type="text" id="mDeadlineInput" class="edit-input" placeholder="VD: 25/11/26">
           </div>
 
           <div class="edit-field-block">
@@ -1304,8 +1375,8 @@
           <div class="edit-field-block">
             <label class="edit-label">Trạng thái công việc:</label>
             <select id="mStatusSelect" class="edit-input">
-              <option value="Quá hạn">🔴 Quá hạn / Cần gỡ</option>
               <option value="Đang thực hiện">🔵 Đang thực hiện</option>
+              <option value="Quá hạn">🔴 Quá hạn / Cần gỡ</option>
               <option value="Lên lịch">⚪ Lên lịch</option>
               <option value="Hoàn thành">🟢 Đã hoàn thành</option>
             </select>
@@ -1314,8 +1385,8 @@
           <div class="edit-field-block">
             <label class="edit-label">Mức độ ưu tiên:</label>
             <select id="mLevelSelect" class="edit-input">
-              <option value="Rất cao">Rất cao (Gấp)</option>
               <option value="Cao">Cao</option>
+              <option value="Rất cao">Rất cao (Gấp)</option>
               <option value="TB">Trung bình (TB)</option>
             </select>
           </div>
@@ -1329,15 +1400,22 @@
       </div>
 
       <div class="modal-foot">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <input type="checkbox" id="mDoneCheck" class="task-checkbox-custom">
-          <label for="mDoneCheck" style="font-size: 0.86rem; font-weight: 600; cursor: pointer;">Đã hoàn thành</label>
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <div id="mDoneCheckWrap" style="display: flex; align-items: center; gap: 6px;">
+            <input type="checkbox" id="mDoneCheck" class="task-checkbox-custom">
+            <label for="mDoneCheck" style="font-size: 0.86rem; font-weight: 600; cursor: pointer;">Đã hoàn thành</label>
+          </div>
+
+          <!-- Nút xóa việc nếu đang xem việc đã có -->
+          <button id="mDeleteBtn" class="btn-delete-task" style="display: none;">
+            <i class="fa-regular fa-trash-can"></i> Xóa việc
+          </button>
         </div>
 
         <div style="display: flex; gap: 8px;">
           <button id="mCancelBtn" class="btn-cancel-modal">Hủy</button>
           <button id="mSaveBtn" class="btn-save-modal">
-            <i class="fa-solid fa-floppy-disk"></i> Lưu thay đổi
+            <i class="fa-solid fa-floppy-disk"></i> <span id="mSaveBtnText">Lưu thay đổi</span>
           </button>
         </div>
       </div>
@@ -1357,6 +1435,7 @@
     let currentMonth = DB.months.find(m => m.is_current)?.id || '2026-11';
     let currentTasks = [];
     let taskOverridesMap = {};
+    let customAddedTasks = []; // tasks created by user directly
 
     let activeAssignee = 'all';
     let activeTag = 'all';
@@ -1364,13 +1443,13 @@
     let activeSearch = '';
     let currentView = 'focus';
     let activeModalStt = null;
+    let isCreateMode = false;
 
     let modalSelectedAssignees = new Set();
     let modalSelectedTags = new Set();
 
-    function getStorageKey() {
-      return `ssport_tasks_overrides_${currentMonth}`;
-    }
+    function getStorageKeyOverrides() { return `ssport_tasks_overrides_${currentMonth}`; }
+    function getStorageKeyCustom() { return `ssport_tasks_custom_${currentMonth}`; }
 
     function showToast(msg) {
       const toast = document.getElementById('toastNotice');
@@ -1387,14 +1466,20 @@
 
     function loadMonth(monthId) {
       currentMonth = monthId;
-      taskOverridesMap = JSON.parse(localStorage.getItem(getStorageKey()) || '{}');
+      taskOverridesMap = JSON.parse(localStorage.getItem(getStorageKeyOverrides()) || '{}');
+      customAddedTasks = JSON.parse(localStorage.getItem(getStorageKeyCustom()) || '[]');
 
       const rawList = DB.tasks[monthId] || [];
-      currentTasks = rawList.map(raw => {
+      
+      // 1. Process Raw Tasks
+      const processedRaw = rawList.map(raw => {
         const override = taskOverridesMap[raw.stt] || {};
+        if (override.deleted) return null; // deleted by user
+
         const isDone = override.done !== undefined ? override.done : (raw.done || false);
         const status = override.status || (isDone ? 'Hoàn thành' : raw.status);
         const assignee = override.assignee !== undefined ? override.assignee : raw.assignee;
+        const taskName = override.task !== undefined ? override.task : raw.task;
         const endDate = override.end_date !== undefined ? override.end_date : raw.end_date;
         const deadlineTime = override.deadline_time !== undefined ? override.deadline_time : raw.deadline_time;
         const level = override.level !== undefined ? override.level : raw.level;
@@ -1403,6 +1488,7 @@
 
         return {
           ...raw,
+          task: taskName,
           tags: tags,
           assignee: assignee,
           end_date: endDate,
@@ -1411,9 +1497,33 @@
           desc: desc,
           status: status,
           done: isDone,
-          is_edited: Object.keys(override).length > 0
+          is_edited: Object.keys(override).length > 0,
+          is_custom: false
         };
-      });
+      }).filter(Boolean);
+
+      // 2. Process Custom Added Tasks
+      const processedCustom = customAddedTasks.map(c => {
+        const override = taskOverridesMap[c.stt] || {};
+        if (override.deleted) return null;
+
+        return {
+          ...c,
+          task: override.task || c.task,
+          tags: override.tags || c.tags,
+          assignee: override.assignee || c.assignee,
+          end_date: override.end_date || c.end_date,
+          deadline_time: override.deadline_time || c.deadline_time,
+          level: override.level || c.level,
+          desc: override.desc || c.desc,
+          status: override.status || c.status,
+          done: override.done !== undefined ? override.done : c.done,
+          is_edited: true,
+          is_custom: true
+        };
+      }).filter(Boolean);
+
+      currentTasks = [...processedCustom, ...processedRaw];
 
       populateFilters();
       updateKpis();
@@ -1554,7 +1664,7 @@
                 ${tagsHtml}
                 <span>• Hạn: <b>${t.end_date || '-'}</b> (${t.deadline_time || '17:00'})</span>
                 ${t.days_left ? `<span style="color: ${isOverdue ? '#DC2626' : 'inherit'}; font-weight: 600;">• ${t.days_left}</span>` : ''}
-                ${t.is_edited ? `<span class="edited-indicator"><i class="fa-solid fa-pen"></i> Đã sửa</span>` : ''}
+                ${t.is_custom ? `<span class="new-task-indicator"><i class="fa-solid fa-plus"></i> Mới tạo</span>` : (t.is_edited ? `<span class="edited-indicator"><i class="fa-solid fa-pen"></i> Đã sửa</span>` : '')}
               </div>
             </div>
           </div>
@@ -1760,21 +1870,72 @@
       if (!taskOverridesMap[stt]) taskOverridesMap[stt] = {};
       taskOverridesMap[stt].done = newDone;
       taskOverridesMap[stt].status = t.status;
-      localStorage.setItem(getStorageKey(), JSON.stringify(taskOverridesMap));
+      localStorage.setItem(getStorageKeyOverrides(), JSON.stringify(taskOverridesMap));
 
       updateKpis();
       renderMain();
     }
 
-    // OPEN MODAL WITH TAGS & ASSIGNEE MANAGERS
+    // OPEN CREATE NEW TASK MODAL
+    function openCreateTaskModal() {
+      isCreateMode = true;
+      activeModalStt = null;
+
+      // Next STT
+      const maxStt = currentTasks.length > 0 ? Math.max(...currentTasks.map(t => parseInt(t.stt) || 0)) : 0;
+      const nextStt = maxStt + 1;
+
+      document.getElementById('mStt').innerText = '#' + nextStt + ' (Tạo mới)';
+      document.getElementById('mEditedBadge').style.display = 'none';
+      document.getElementById('mNewBadge').style.display = 'inline-flex';
+
+      // Switch to title input
+      document.getElementById('mTitleView').style.display = 'none';
+      document.getElementById('mTitleEditWrap').style.display = 'block';
+      document.getElementById('mTitleInput').value = '';
+
+      // Default tags
+      modalSelectedTags = new Set(['Chung']);
+      renderModalTags();
+
+      // Clear assignees
+      modalSelectedAssignees = new Set();
+      renderModalAssigneePills();
+
+      // Today's date default
+      const now = new Date();
+      const dd = String(now.getDate()).padStart(2, '0');
+      const mm = String(now.getMonth() + 1).padStart(2, '0');
+      const yy = String(now.getFullYear()).slice(-2);
+      document.getElementById('mDeadlineInput').value = `${dd}/${mm}/${yy}`;
+      document.getElementById('mDeadlineTimeInput').value = '17:00';
+      document.getElementById('mStatusSelect').value = 'Đang thực hiện';
+      document.getElementById('mLevelSelect').value = 'Cao';
+      document.getElementById('mDescTextarea').value = '';
+      document.getElementById('mDoneCheck').checked = false;
+      document.getElementById('mDoneCheckWrap').style.display = 'none';
+      document.getElementById('mDeleteBtn').style.display = 'none';
+      document.getElementById('mSaveBtnText').innerText = 'Tạo công việc';
+
+      document.getElementById('modalOverlay').style.display = 'flex';
+      setTimeout(() => document.getElementById('mTitleInput').focus(), 100);
+    }
+
+    // OPEN EDIT MODAL
     function openModal(stt) {
+      isCreateMode = false;
       const t = currentTasks.find(x => x.stt === stt);
       if (!t) return;
       activeModalStt = stt;
 
       document.getElementById('mStt').innerText = '#' + t.stt;
-      document.getElementById('mTitle').innerText = t.task;
       document.getElementById('mEditedBadge').style.display = t.is_edited ? 'inline-flex' : 'none';
+      document.getElementById('mNewBadge').style.display = t.is_custom ? 'inline-flex' : 'none';
+
+      // Switch to title view
+      document.getElementById('mTitleView').style.display = 'block';
+      document.getElementById('mTitleEditWrap').style.display = 'none';
+      document.getElementById('mTitle').innerText = t.task;
 
       // 1. Tags Setup
       modalSelectedTags = new Set(t.tags || [t.project]);
@@ -1791,7 +1952,9 @@
       document.getElementById('mLevelSelect').value = t.level || 'TB';
       document.getElementById('mDescTextarea').value = t.desc || '';
       document.getElementById('mDoneCheck').checked = t.done || t.status === 'Hoàn thành';
-      document.getElementById('mNewTagInput').value = '';
+      document.getElementById('mDoneCheckWrap').style.display = 'flex';
+      document.getElementById('mDeleteBtn').style.display = 'inline-flex';
+      document.getElementById('mSaveBtnText').innerText = 'Lưu thay đổi';
 
       document.getElementById('modalOverlay').style.display = 'flex';
     }
@@ -1859,13 +2022,10 @@
     function closeModal() {
       document.getElementById('modalOverlay').style.display = 'none';
       activeModalStt = null;
+      isCreateMode = false;
     }
 
     function saveModalChanges() {
-      if (!activeModalStt) return;
-      const t = currentTasks.find(x => x.stt === activeModalStt);
-      if (!t) return;
-
       const newAssigneeStr = Array.from(modalSelectedAssignees).join(', ');
       const newTagsList = Array.from(modalSelectedTags);
       const newEndDate = document.getElementById('mDeadlineInput').value.trim();
@@ -1875,7 +2035,48 @@
       const newDesc = document.getElementById('mDescTextarea').value.trim();
       const newDone = document.getElementById('mDoneCheck').checked || (newStatus === 'Hoàn thành');
 
-      // Update in memory
+      if (isCreateMode) {
+        // TẠO CÔNG VIỆC MỚI
+        const taskTitle = document.getElementById('mTitleInput').value.trim();
+        if (!taskTitle) {
+          alert('Vui lòng nhập tên công việc!');
+          document.getElementById('mTitleInput').focus();
+          return;
+        }
+
+        const maxStt = currentTasks.length > 0 ? Math.max(...currentTasks.map(t => parseInt(t.stt) || 0)) : 0;
+        const newStt = maxStt + 1;
+
+        const newTaskObj = {
+          stt: newStt,
+          task: taskTitle,
+          project: newTagsList[0] || 'Việc mới',
+          tags: newTagsList.length > 0 ? newTagsList : ['Việc mới'],
+          assignee: newAssigneeStr || 'Chưa gán',
+          end_date: newEndDate,
+          deadline_time: newDeadlineTime,
+          level: newLevel,
+          desc: newDesc,
+          status: newStatus,
+          done: false,
+          days_left: 'Mới tạo',
+          is_custom: true
+        };
+
+        customAddedTasks.unshift(newTaskObj);
+        localStorage.setItem(getStorageKeyCustom(), JSON.stringify(customAddedTasks));
+
+        closeModal();
+        loadMonth(currentMonth);
+        showToast(`Đã tạo thành công công việc #${newStt}!`);
+        return;
+      }
+
+      // CHỈNH SỬA CÔNG VIỆC ĐÃ CÓ
+      if (!activeModalStt) return;
+      const t = currentTasks.find(x => x.stt === activeModalStt);
+      if (!t) return;
+
       t.assignee = newAssigneeStr;
       t.tags = newTagsList.length > 0 ? newTagsList : [t.project];
       t.end_date = newEndDate;
@@ -1886,7 +2087,6 @@
       t.done = newDone;
       t.is_edited = true;
 
-      // Save to localStorage
       if (!taskOverridesMap[activeModalStt]) taskOverridesMap[activeModalStt] = {};
       taskOverridesMap[activeModalStt] = {
         assignee: newAssigneeStr,
@@ -1898,13 +2098,31 @@
         desc: newDesc,
         done: newDone
       };
-      localStorage.setItem(getStorageKey(), JSON.stringify(taskOverridesMap));
+      localStorage.setItem(getStorageKeyOverrides(), JSON.stringify(taskOverridesMap));
 
       closeModal();
       populateFilters();
       updateKpis();
       renderMain();
-      showToast('Đã lưu tag & cập nhật cho việc #' + activeModalStt + '!');
+      showToast('Đã lưu cập nhật cho việc #' + activeModalStt + '!');
+    }
+
+    function deleteTask() {
+      if (!activeModalStt) return;
+      if (!confirm(`Bạn có chắc chắn muốn xóa công việc #${activeModalStt} này?`)) return;
+
+      // If custom task, remove from customAddedTasks
+      customAddedTasks = customAddedTasks.filter(c => c.stt !== activeModalStt);
+      localStorage.setItem(getStorageKeyCustom(), JSON.stringify(customAddedTasks));
+
+      // Mark deleted in overrides
+      if (!taskOverridesMap[activeModalStt]) taskOverridesMap[activeModalStt] = {};
+      taskOverridesMap[activeModalStt].deleted = true;
+      localStorage.setItem(getStorageKeyOverrides(), JSON.stringify(taskOverridesMap));
+
+      closeModal();
+      loadMonth(currentMonth);
+      showToast(`Đã xóa công việc #${activeModalStt}!`);
     }
 
     // DOWNLOAD UPDATED BUNDLE.JS FOR GITHUB
@@ -1912,6 +2130,7 @@
       const updatedTasks = currentTasks.map(t => {
         const copy = { ...t };
         delete copy.is_edited;
+        delete copy.is_custom;
         return copy;
       });
 
@@ -1936,7 +2155,7 @@ window.SSPORT_DATABASE = ${JSON.stringify(exportDB, null, 2)};
       a.remove();
       URL.revokeObjectURL(url);
 
-      showToast('Đã tải file bundle.js cập nhật! Chị có thể kéo vào GitHub để đồng bộ cho cả công ty.');
+      showToast('Đã tải file bundle.js! Kéo file này vào GitHub (thư mục data/) để cập nhật cho toàn công ty.');
     }
 
     document.addEventListener('DOMContentLoaded', () => {
@@ -1989,7 +2208,8 @@ window.SSPORT_DATABASE = ${JSON.stringify(exportDB, null, 2)};
       // Reset
       document.getElementById('resetBtn').addEventListener('click', () => {
         if (confirm(`Bạn muốn khôi phục lại trạng thái ban đầu từ Google Sheet?`)) {
-          localStorage.removeItem(getStorageKey());
+          localStorage.removeItem(getStorageKeyOverrides());
+          localStorage.removeItem(getStorageKeyCustom());
           loadMonth(currentMonth);
           showToast('Đã khôi phục dữ liệu gốc!');
         }
@@ -1998,10 +2218,14 @@ window.SSPORT_DATABASE = ${JSON.stringify(exportDB, null, 2)};
       // Download Bundle
       document.getElementById('downloadBundleBtn').addEventListener('click', downloadUpdatedBundle);
 
+      // Open Create Modal
+      document.getElementById('openCreateModalBtn').addEventListener('click', openCreateTaskModal);
+
       // Modal Events
       document.getElementById('mCloseBtn').addEventListener('click', closeModal);
       document.getElementById('mCancelBtn').addEventListener('click', closeModal);
       document.getElementById('mSaveBtn').addEventListener('click', saveModalChanges);
+      document.getElementById('mDeleteBtn').addEventListener('click', deleteTask);
       document.getElementById('modalOverlay').addEventListener('click', (e) => {
         if (e.target.id === 'modalOverlay') closeModal();
       });
